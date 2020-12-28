@@ -70,10 +70,15 @@ public class Main {
                                     "2) No");
                             optionCaseTwo = s.nextInt();
                         }
-
                         break;
                     case "3":
-
+                        System.out.print("Introdueix la taxa de transmissió del virus: ");
+                        double rt = s.nextDouble();
+                        for (int i = 0; i < row; i++) {
+                            for (int j = 0; j < column; j++) {
+                                table[i][j] += Math.floor(table[i][j] * rt);
+                            }
+                        }
                         break;
                     case "4":
 
