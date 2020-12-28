@@ -29,23 +29,18 @@ public class Main {
                                 "1) Taulell buit",
                                 "2) Taulell amb malalts");
                         int optionCaseOne = s.nextInt();
+                        System.out.print("Introduiex la quantitat de files: ");
+                        row = s.nextInt();
+                        System.out.print("Introduiex la quantitat de columnes: ");
+                        column = s.nextInt();
+                        table = new int[row][column];
                         if (optionCaseOne == 1) {
-                            System.out.print("Introduiex la quantitat de files: ");
-                            row = s.nextInt();
-                            System.out.print("Introduiex la quantitat de columnes: ");
-                            column = s.nextInt();
-                            table = new int[row][column];
                             for (int i = 0; i < row; i++) {
                                 for (int j = 0; j < column; j++) {
                                     table[i][j] = 0;
                                 }
                             }
                         } else {
-                            System.out.print("Introduiex la quantitat de files: ");
-                            row = s.nextInt();
-                            System.out.print("Introduiex la quantitat de columnes: ");
-                            column = s.nextInt();
-                            table = new int[row][column];
                             for (int i = 0; i < row; i++) {
                                 int valueRow = i + 1;
                                 System.out.println("Valors de la fila " + valueRow);
