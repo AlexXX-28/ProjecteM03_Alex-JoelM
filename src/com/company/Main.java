@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -19,7 +18,7 @@ public class Main {
                     "5) Desplaçar malalts",
                     "6) Mostrar informació",
                     "7) Sortir",
-                    "Introduiex un numero del 1 al 7 per seleccionar l'opcio: ");
+                    "Introduiex un numero del 1 al 7 per seleccionar l'opció: ");
             numOption = s.next();
             if (numOption.length() != 1) {
                 System.out.println("Error al introducir el valor " + numOption + " deseado, vuelve a intentar...");
@@ -57,6 +56,20 @@ public class Main {
                         }
                         break;
                     case "2":
+                        int optionCaseTwo = 1;
+                        while (optionCaseTwo != 2){
+                            System.out.print("Introduiex la fila: ");
+                            int insertRow = s.nextInt();
+                            System.out.print("Introduiex la columna: ");
+                            int insertColumn = s.nextInt();
+                            System.out.print("Introdueix el valor per a la columna "+ insertColumn + " de la fila " + insertRow + ": ");
+                            table[insertRow-1][insertColumn-1] = s.nextInt();
+                            System.out.printf("%s\n%s\n%s\n",
+                                    "Vols continuar introduint malalts? ",
+                                    "1) Si",
+                                    "2) No");
+                            optionCaseTwo = s.nextInt();
+                        }
 
                         break;
                     case "3":
