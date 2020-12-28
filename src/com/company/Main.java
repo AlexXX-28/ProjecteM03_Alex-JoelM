@@ -81,7 +81,43 @@ public class Main {
                         }
                         break;
                     case "4":
-
+                        System.out.printf("%s\n%s\n",
+                                "1) Curar tota la taula",
+                                "2) Curar posicio concreta");
+                        int optionCaseFour = s.nextInt();
+                        System.out.printf("%s\n%s\n",
+                                "1) Curar amb percentatge",
+                                "2) Curar amb valor numeric");
+                        int numericOrPercentage = s.nextInt();
+                        if (optionCaseFour == 1){
+                            System.out.print("Introdueix el percentatge (sense el simbol %): ");
+                            float heal = s.nextFloat() / 100;
+                            if (numericOrPercentage == 1){
+                                for (int i = 0; i < row; i++) {
+                                    for (int j = 0; j < column; j++) {
+                                        table[i][j] = (int)(table[i][j] * heal);
+                                    }
+                                }
+                            } else {
+                                for (int i = 0; i < row; i++) {
+                                    for (int j = 0; j < column; j++) {
+                                        table[i][j] = (int)(table[i][j] - heal);
+                                    }
+                                }
+                            }
+                        } else {
+                            System.out.print("Introdueix el numero de cura: ");
+                            double heal = s.nextDouble();
+                            System.out.print("Introduiex la fila: ");
+                            int insertRow = s.nextInt();
+                            System.out.print("Introduiex la columna: ");
+                            int insertColumn = s.nextInt();
+                            if (numericOrPercentage == 1){
+                                table[insertRow-1][insertColumn-1] -= Math.floor(table[insertRow-1][insertColumn-1] * heal);
+                            } else {
+                                table[insertRow-1][insertColumn-1] -= Math.floor(table[insertRow-1][insertColumn-1] - heal);
+                            }
+                        }
                         break;
                     case "5":
 
@@ -95,7 +131,7 @@ public class Main {
                         }
                         break;
                     case "7":
-
+                        System.out.println("Fins despres :D");
                         break;
                     default:
                         System.out.println("Error al introducir el valor " + numOption + " deseado, vuelve a intentar...");
