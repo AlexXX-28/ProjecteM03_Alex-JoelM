@@ -1,13 +1,16 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //MENU
+        int[][] table = new int[0][0];
+        int row = 0;
+        int column = 0;
         Scanner s = new Scanner(System.in);
-        String numOpcio = "0";
-        while (!numOpcio.equals("7")) {
+        String numOption = "0";
+        while (!numOption.equals("7")) {
             System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s",
                     "1) Carrega taulell",
                     "2) Introduir malalts",
@@ -16,14 +19,42 @@ public class Main {
                     "5) Desplaçar malalts",
                     "6) Mostrar informació",
                     "7) Sortir",
-                    "Introduiex un numero del 1 al 7 per seleccionar l'opcio:");
-            numOpcio = s.next();
-            if (numOpcio.length() != 1){
-                System.out.println("Error al introducir el valor " + numOpcio + " deseado, vuelve a intentar...");
+                    "Introduiex un numero del 1 al 7 per seleccionar l'opcio: ");
+            numOption = s.next();
+            if (numOption.length() != 1) {
+                System.out.println("Error al introducir el valor " + numOption + " deseado, vuelve a intentar...");
             } else {
-                switch (numOpcio) {
+                switch (numOption) {
                     case "1":
-
+                        System.out.printf("%s\n%s\n",
+                                "1) Taulell buit",
+                                "2) Taulell amb malalts");
+                        int optionCaseOne = s.nextInt();
+                        if (optionCaseOne == 1) {
+                            System.out.print("Introduiex la quantitat de files: ");
+                            row = s.nextInt();
+                            System.out.print("Introduiex la quantitat de columnes: ");
+                            column = s.nextInt();
+                            table = new int[row][column];
+                            for (int i = 0; i < row; i++) {
+                                for (int j = 0; j < column; j++) {
+                                    table[i][j] = 0;
+                                }
+                            }
+                        } else {
+                            System.out.print("Introduiex la quantitat de files: ");
+                            row = s.nextInt();
+                            System.out.print("Introduiex la quantitat de columnes: ");
+                            column = s.nextInt();
+                            table = new int[row][column];
+                            for (int i = 0; i < row; i++) {
+                                int valueRow = i + 1;
+                                System.out.println("Valors de la fila " + valueRow);
+                                for (int j = 0; j < column; j++) {
+                                    table[i][j] = s.nextInt();
+                                }
+                            }
+                        }
                         break;
                     case "2":
 
@@ -38,13 +69,18 @@ public class Main {
 
                         break;
                     case "6":
-
+                        for (int i = 0; i < row; i++) {
+                            for (int j = 0; j < column; j++) {
+                                System.out.print(table[i][j]);
+                            }
+                            System.out.println();
+                        }
                         break;
                     case "7":
 
                         break;
                     default:
-                        System.out.println("Error al introducir el valor " + numOpcio + " deseado, vuelve a intentar...");
+                        System.out.println("Error al introducir el valor " + numOption + " deseado, vuelve a intentar...");
                 }
             }
 
