@@ -18,8 +18,8 @@ public class Main {
         boolean tableCreate = false;
         Scanner s = new Scanner(System.in);
         String numOption = "0";
-        while (!numOption.equals("7")) {
-            System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s",
+        while (!numOption.equals("7")) { //El while acabara quan al escollir l'opció 7 (Sortir)
+            System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s", //Menu Inicial amb les diferents opcions
                     "\033[34m*************************",
                     "* \033[30m1) Carrega taulell    \033[34m*",
                     "* \033[30m2) Introduir malalts  \033[34m*",
@@ -32,21 +32,21 @@ public class Main {
                     "Introduiex un numero del 1 al 7 per seleccionar l'opció: ");
             numOption = s.next();
             if (numOption.length() != 1) {
-                System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
+                System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m"); // Els diferents errors que puguin sortir es mostraran amb color vermell
             } else {
                 switch (numOption) {
-                    case "1" -> {
-                        System.out.printf("%s\n%s\n",
+                    case "1" -> { //Creació del taulell
+                        System.out.printf("%s\n%s\n", //Diferents opcions del case 1
                                 "1) Taulell buit",
                                 "2) Taulell amb malalts");
-                        int optionCaseOne = s.nextInt();
+                        int optionCaseOne = s.nextInt(); //La variable optionCaseOne serveix per identificar quina opció s'ha escollit
                         System.out.print("Introduiex la quantitat de files: ");
                         row = s.nextInt();
                         System.out.print("Introduiex la quantitat de columnes: ");
                         column = s.nextInt();
                         table = new int[row][column];
                         tableShow = new String[row][column];
-                        if (optionCaseOne == 1) {
+                        if (optionCaseOne == 1) { //Si la variable optionCaseOne es = 1 s'haura escollit "Taullel buit" si no, amb l'else indiquem que s'haura escollit l'opció "Taullel amb Malalts"
                             for (int i = 0; i < row; i++) {
                                 for (int j = 0; j < column; j++) {
                                     table[i][j] = 0;
@@ -59,18 +59,18 @@ public class Main {
                                 }
                             }
                         }
-                        cellBlocked = column * row / 4;
-                        arrayColumn = new int[cellBlocked];
-                        arrayRow = new int[cellBlocked];
+                        cellBlocked = column * row / 4; // Em declarat que la quantitat de cel·les bloquejades sigui el total de cel·les de la taula / 4 (Per a que no hi hagi ni poques ni masses)
+                        arrayColumn = new int[cellBlocked]; // Aquest nou array es refereix a la posició de la columna de l'array real, on hi ha una cel·la bloquejada
+                        arrayRow = new int[cellBlocked]; // Aquest nou array es refereix a la posició de la fila de l'array real, on hi ha una cel·la bloquejada
                         for (int i = 0; i < cellBlocked; i++) {
-                            arrayColumn[i] = (int) (Math.random() * column);
-                            arrayRow[i] = (int) (Math.random() * row);
-                            table[arrayColumn[i]][arrayRow[i]] = 0;
+                            arrayColumn[i] = (int) (Math.random() * column); //Aqui es genera un numero aleatori que com a màxim sigui el numero de columnes que hi ha per a posar una X aleatoriament en la taula
+                            arrayRow[i] = (int) (Math.random() * row); //El mateix que a dalt pero per a les files
+                            table[arrayColumn[i]][arrayRow[i]] = 0; // El valor de les cel·les bloquejades ha de ser 0
                         }
                         tableCreate = true;
                     }
-                    case "2" -> {
-                        if (tableCreate) {
+                    case "2" -> { //Afegir Malalts
+                        if (tableCreate) { //Per als case del 2-6 hi ha un validador que ens permet donar missatge d'error si no s'ha creat cap taula
                             int optionCaseTwo = 1;
                             while (optionCaseTwo != 2) {
                                 System.out.print("Introduiex la fila: ");
@@ -80,7 +80,7 @@ public class Main {
                                 System.out.print("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                                 table[insertRow - 1][insertColumn - 1] = s.nextInt();
                                 System.out.printf("%s\n%s\n%s\n",
-                                        "Vols continuar introduint malalts? ",
+                                        "Vols continuar introduint malalts? ", //Això ens permet no sortir del case 2 i poder continuar afegint malalts
                                         "1) Si",
                                         "2) No");
                                 optionCaseTwo = s.nextInt();
@@ -89,7 +89,7 @@ public class Main {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
                         }
                     }
-                    case "3" -> {
+                    case "3" -> { //Transmissió del virus
                         if (tableCreate) {
                             System.out.print("Introdueix la taxa de transmissió del virus: ");
                             double rt = s.nextDouble();
@@ -399,8 +399,6 @@ public class Main {
                     default -> System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
                 }
             }
-
         }
-
     }
 }
