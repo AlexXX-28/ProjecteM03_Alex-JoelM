@@ -74,9 +74,9 @@ public class Main {
                             int optionCaseTwo = 1;
                             while (optionCaseTwo != 2) {
                                 System.out.print("Introduiex la fila: ");
-                                int insertRow = s.nextInt();
+                                int insertRow = s.nextInt(); //Aquesta variable ens permet seleccionar la fila
                                 System.out.print("Introduiex la columna: ");
-                                int insertColumn = s.nextInt();
+                                int insertColumn = s.nextInt(); //Aquesta variable ens permet seleccionar la columna
                                 System.out.print("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                                 table[insertRow - 1][insertColumn - 1] = s.nextInt();
                                 System.out.printf("%s\n%s\n%s\n",
@@ -197,12 +197,12 @@ public class Main {
                     }
                     case "5" -> {
                         if (tableCreate) {
-                            int malaltsDesplasar = 0;
+                            int malaltsDesplasar = 0; //Quantitat de malalats que es desplaçaran
                             int insertRow = 0;
                             int insertColumn = 0;
-                            boolean malaltsBol = false;
-                            boolean keyMalaltsBol = false;
-                            boolean blockedBol = false;
+                            boolean malaltsBol = false; //Aquesta variable ens permet validar si em volgut desplaçar més malalts dels que hi havien en la cel·la
+                            boolean keyMalaltsBol = false; //Aquesta variable ens permet validar si em introduit una tecla correcte (q-w-e-a-d-z-x-c)
+                            boolean blockedBol = false; //Aquesta variable ens permet validar si em seleccionat una cel·la bloquejada
                             int caseFive = 1;
                             while (caseFive != 2) {
                                 while (!blockedBol) {
@@ -220,7 +220,7 @@ public class Main {
                                 while (!malaltsBol) {
                                     System.out.print("Quants malalts vols desplaçar: ");
                                     malaltsDesplasar = s.nextInt();
-                                    totalLockdown += malaltsDesplasar;
+                                    totalLockdown += malaltsDesplasar; //Per a saber el percentatge de les persones que es salten el confinament
                                     if (malaltsDesplasar > table[insertRow - 1][insertColumn - 1]) {
                                         System.out.println("\033[31mError al introduir el valor " + malaltsDesplasar + " supera el numero de malalts.\033[30m");
                                     } else {
@@ -228,21 +228,21 @@ public class Main {
                                     }
                                 }
                                 while (!keyMalaltsBol) {
-                                    System.out.printf("%s\n%s\n%s\n%s\n",
+                                    System.out.printf("%s\n%s\n%s\n%s\n", //Diferents opcions mostrades d'una manera gràfica per a la millor comprensió posible
                                             "Instruccions per a desplaçar: ",
                                             "| Q (dalt esquerra) |   W (dalt mig)    | E (dalt dreta) |",
                                             "| A (esquerra mig)  |  (Posicio actual) | D (dreta mig)  |",
                                             "| Z (baix esquerra) |   X (baix mig)    | C (baix dreta) |");
                                     System.out.print("Introdueix el valor: ");
-                                    String keyDisplacement = s.next().toLowerCase();
+                                    String keyDisplacement = s.next().toLowerCase(); //Per a no tenir problemes amb mayuscula o minuscula
                                     switch (keyDisplacement) {
                                         case "q" -> {
                                             if (insertRow - 1 == 0 || insertColumn - 1 == 0) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
-                                                if (tableShow[insertRow - 2][insertColumn - 2].equals("X")) {
+                                                if (tableShow[insertRow - 2][insertColumn - 2].equals("X")) { //TableShow es un nou array que serveix per mostrar a l'apartat 6 l'estat actual de la taula, amb les "X" en les cel·les bloquejades per tant ens serveix per aquest apartat per identificar si una cel·la es bloquejada o no
                                                     System.out.println("\033[31mNo es pot desplaçar a una cel·la bloquejada\033[30m");
-                                                    totalLockdown -= malaltsDesplasar;
+                                                    totalLockdown -= malaltsDesplasar; //Si surt error perque es selecciona una cel·la bloquejada ja s'hauria sumat x persones que es salten el confinament, per tant si surt l'error s'han de restar
                                                 } else {
                                                     table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                                     table[insertRow - 2][insertColumn - 2] += malaltsDesplasar;
@@ -351,7 +351,7 @@ public class Main {
                                         default -> System.out.println("\033[31mError al introduir el valor " + keyDisplacement + " desitjat, torna a intentar...\033[30m");
                                     }
                                 }
-                                System.out.printf("%s\n%s\n%s\n",
+                                System.out.printf("%s\n%s\n%s\n", //Opcions que ens permeten tornar a desplaçar
                                         "Vols continuar desplaçant?",
                                         "1) Si",
                                         "2) No");
@@ -369,18 +369,18 @@ public class Main {
                         if (tableCreate) {
                             for (int i = 0; i < row; i++) {
                                 for (int j = 0; j < column; j++) {
-                                    tableShow[i][j] = String.valueOf(table[i][j]);
+                                    tableShow[i][j] = String.valueOf(table[i][j]); //TableShow es un array tipus string que copia el array base tipus int
                                     totalSick += table[i][j];
                                 }
                             }
                             for (int i = 0; i < cellBlocked; i++) {
-                                tableShow[arrayColumn[i]][arrayRow[i]] = "X";
+                                tableShow[arrayColumn[i]][arrayRow[i]] = "X"; //Una vegada copiada la informació a l'array TableShow em de remplaçar les cel·les bloquejades amb "X"
                             }
                             for (int i = 0; i < row; i++) {
                                 for (int j = 0; j < column; j++) {
                                     if (tableShow[i][j].equals("X")) {
                                         System.out.print("\033[31m");
-                                        System.out.printf("%-5s", "X");
+                                        System.out.printf("%-5s", "X"); //Les X les volem printar de color vermell
                                         System.out.print("\033[30m");
                                     } else {
                                         System.out.printf("%-5s", tableShow[i][j] + " ");
