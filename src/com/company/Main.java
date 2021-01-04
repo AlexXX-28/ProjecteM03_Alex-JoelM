@@ -32,7 +32,7 @@ public class Main {
                     "Introduiex un numero del 1 al 7 per seleccionar l'opció: ");
             numOption = s.next();
             if (numOption.length() != 1) {
-                System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m"); // Els diferents errors que puguin sortir es mostraran amb color vermell
+                System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m"); // Els diferents errors que puguin sortir es mostraran amb color vermell = \033[31m i per a que torni a printar en color negre = \033[30m
             } else {
                 switch (numOption) {
                     case "1" -> { //Creació del taulell
@@ -95,22 +95,22 @@ public class Main {
                             double rt = s.nextDouble();
                             for (int i = 0; i < row; i++) {
                                 for (int j = 0; j < column; j++) {
-                                    table[i][j] += Math.floor(table[i][j] * rt);
+                                    table[i][j] += Math.floor(table[i][j] * rt); // El calcul s'ha d'arrodonir cap a baix, ja que no poden haver ex: 1,5 persones malaltes per tant amb el Math.floor 1,5 = 1
                                 }
                             }
                         } else {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
                         }
                     }
-                    case "4" -> {
-                        totalHealCompare = 0;
-                        totalSick = 0;
+                    case "4" -> {  //Curar malalts
+                        totalHealCompare = 0; //Aquesta variable ens permet comparar les persones malaltes despres d'haver-les curat
+                        totalSick = 0; //Aquesta variable ens permet saber quantes persones malaltes hi ha abans de curarles
                         if (tableCreate) {
-                            System.out.printf("%s\n%s\n",
+                            System.out.printf("%s\n%s\n", //Diferents opcions del case 4
                                     "1) Curar tota la taula",
                                     "2) Curar posicio concreta");
                             int optionCaseFour = s.nextInt();
-                            System.out.printf("%s\n%s\n",
+                            System.out.printf("%s\n%s\n", //Diferents opcions de com volem curar, amb percentatge o amb valor numeric
                                     "1) Curar amb percentatge",
                                     "2) Curar amb valor numeric");
                             int numericOrPercentage = s.nextInt();
@@ -118,7 +118,7 @@ public class Main {
                                 if (numericOrPercentage == 1) {
                                     float healFloat = 0;
                                     boolean validated = false;
-                                    while (!validated) {
+                                    while (!validated) { // Per a que el percentatge sigui entre 0 - 100 el while es fara infinitament fins que s'entri un valor valid
                                         System.out.print("Introdueix el percentatge (sense el simbol %) de 0 a 100: ");
                                         healFloat = s.nextInt();
                                         if (healFloat > 100 || healFloat < 0) {
@@ -128,22 +128,22 @@ public class Main {
                                         }
                                         healFloat = healFloat / 100;
                                     }
-                                    for (int i = 0; i < row; i++) {
+                                    for (int i = 0; i < row; i++) { //Aquest for ens permet curar a les persones, a la par que enregistrem quantes persones han sigut curades
                                         for (int j = 0; j < column; j++) {
                                             totalSick += table[i][j];
                                             table[i][j] -= (int) (table[i][j] * healFloat);
                                             totalHealCompare += table[i][j];
                                         }
                                     }
-                                    totalHeal += totalSick - totalHealCompare;
+                                    totalHeal += totalSick - totalHealCompare; //El total de persones curades es = al numero de persones malaltes - el numero de persones malaltes despres de curarles
                                 } else {
                                     System.out.print("Introdueix el número de malalts a curar: ");
                                     int heal = s.nextInt();
-                                    for (int i = 0; i < row; i++) {
+                                    for (int i = 0; i < row; i++) { //Aquest for ens permet curar a les persones, a la par que enregistrem quantes persones han sigut curades
                                         for (int j = 0; j < column; j++) {
                                             totalSick += table[i][j];
                                             table[i][j] -= heal;
-                                            if (table[i][j] < 0) {
+                                            if (table[i][j] < 0) { //Aquest if ens permet cambiar valors negatius a 0
                                                 table[i][j] = 0;
                                             }
                                             totalHealCompare += table[i][j];
@@ -171,7 +171,7 @@ public class Main {
                                     }
                                     totalSick = table[insertRow - 1][insertColumn - 1];
                                     table[insertRow - 1][insertColumn - 1] -= (int) (table[insertRow - 1][insertColumn - 1] * healFloat);
-                                    totalHealCompare = table[insertRow - 1][insertColumn - 1];
+                                    totalHealCompare = table[insertRow - 1][insertColumn - 1]; // Com es una sola cel·la no cal comparar amb totes les cel·les com abans, nomes la seleccionada
                                     totalHeal += totalSick - totalHealCompare;
                                 } else {
                                     int healInt = 0;
@@ -395,7 +395,7 @@ public class Main {
                         System.out.println("El total de persones curades es : " + totalHeal);
                         System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick );
                     }
-                    case "7" -> System.out.println("Fins despres \uD83D\uDE04");
+                    case "7" -> System.out.println("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
                     default -> System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
                 }
             }
