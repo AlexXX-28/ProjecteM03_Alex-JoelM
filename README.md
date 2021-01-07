@@ -39,7 +39,7 @@ Fent proves de que el nostre codi funcionava correctament vam tenir alguns error
 El requadre groc es la posició actual, el cercle es a on s'hauria de desplaçar i el triangle es a on es desplaça.
 
 -En l'apartat de "Desplaçar Malalts" haviem de guardar quants malalts anaven desplaçant-se en una variable per a mostrar-ho en una altre opció, per tant la variable guarda el numero de malalts que es volien desplaçar en el mateix moment que es demanava, pero si a continuació es veia que la cel·la era una bloquejada o que no es podia perquè donava error per alguna altre cosa ja s'havia sumat a aquella variable tot i que finalment no s'havia desplaçat.
-![L'error es va solucionar restant el que haviem sumat previament en el cas que hi hagues l'error](/Images/Captura2.PNG)
+![L'error es va solucionar restant el que haviem sumat previament en el cas que hi hagues l'error](/Images/Captura12.PNG)
 
 ## Propostes de millora
 Tot i que nomes es requeria una proposta de millora, hi havien força coses que ens molestaven o no acababen d'agradar-nos.
