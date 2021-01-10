@@ -14,13 +14,14 @@ Una vegada s'acaba el case que em seleccionat ens demana si volem tornar a utili
    2. Si la llargada del resultat es correcte entra al switch, on per cada case correspon amb el resultat del menu, es a dir, 7 cases + el default en cas de que no hi ha cap resposta bona, que torni una altra cop a demanar (ja que esta contingut dintre del bucle). 
 3. En el cas de la resposta sigui correcte entrem automaticament en el switch i comprobem el resultat per als cases, (per els case del 2 al 6 comença amb un if que serveix per determina si existeix el array a partir d'un boolean, que comença per defecte a false, aixo fa que nomes el primer cop es obligatori fer el primer case).
    1. Case 1: creacio del taulell.
-      1. Impressio de les diferents opcions (taulell buit i taulell amb malalts).
-      2. Variable que conte l'opció demanada en el anterior punt.
-      3. impressió de les quantitats de files i columnes que vol el usuari.
-      4. Variable que conte l'opció demanada en el anterior punt.
-      5. Creacio de la taula numerica (on aquesta servira per la agafar la informacio demanada).
-      6. Creacio de la taula String (que servira per agafar la informacio de la taula numerica i pasarla a string per fer joc amb les X de les cel·les).
-      7. Un if per fer les accions corresponents a partir de les varibles anterior de taulell buit i taulell amb malalts.
+      1. Inicialitzem les variables corresponents.
+      2. Impressio de les diferents opcions (taulell buit i taulell amb malalts).
+      3. Variable que conte l'opció demanada en el anterior punt.
+      4. impressió de les quantitats de files i columnes que vol el usuari.
+      5. Variable que conte l'opció demanada en el anterior punt.
+      6. Creacio de la taula numerica (on aquesta servira per la agafar la informacio demanada).
+      7. Creacio de la taula String (que servira per agafar la informacio de la taula numerica i pasarla a string per fer joc amb les X de les cel·les).
+      8. Un if per fer les accions corresponents a partir de les varibles anterior de taulell buit i taulell amb malalts.
          1. Si en el cas de que el resultat de la primera impressio es 1, doncs s'ha crea un taulell buit a partir de un bucle per a que cada cel·la contingui el valor 0.
          2. Si no es el cas anterior doncs creara el taulell amb malalts a partir de un bucle del cual servira per fer que cada cel·la s'ompli amb un valor numeric aleatori (Math.random) de un maxim de 10.
       8. Es crea un varible on conte un calcul que declara que la quantitat de cel·les bloquejades sigui el total de cel·les de la taula / 4 (Per a que no hi hagi ni poques ni masses).
@@ -38,9 +39,63 @@ Una vegada s'acaba el case que em seleccionat ens demana si volem tornar a utili
       2. Un for dintre de un altre for per recorre el taulell numeric per introduir a cada cel·la el calcul de la taxa de la transmissió del virus.
       3. Dintre dels for el calcul que es desde la poscicio de la cel·la actualitzada per la transmissio del virus, tot aquest calcul amb un floor per arrodonir cap a baix.
    4. Case 4: curar malalts.
+      1. Inicialitzem la variable totalHealCompare a 0, que ens permet comparar les persones malaltes despres d'haver-les curat.
+      2. Inicialitzem  la varialbe totalSick a 0, que ens permet saber quantes persones malaltes hi ha abans de curarles.
+      3. Impressió de curar tota la taula i curar per posició concreta.
+      4. Varible que guardara la respota anterior (amb valor numeric: 1 o 2).
+      5. Impressió de curar amb percentatge o amb valor numeric.
+      6. Varible que guardara la respota anterior (amb valor numeric: 1 o 2).
+      7. Un if en el cas de que la primera varible fos com a resultat un 1 fara el apartat "curar tota la taula", sino automaticament sera la segona opció "curar per posició concreta".
+         1. Apartat de curar tota la taula
+            1. un if per saber si es fara amb percentatge o amb valor numeric.
+               1. Apartat per percentatge.
+                  1. Inicialitzem les variables corresponents.
+                  2. Un while per a que el percentatge sigui entre 0 - 100 el while es fara infinitament fins que s'entri un valor valid.
+                  3. Impressió de el valor del percentatge entre 0 i 100.
+                  4. Variable que guardara la resposta anterior del percentatge.
+                  5. Un if comparan si el percentatge esta entre 0 i 100.
+                  6. Un for que ens permet curar a les persones, a la par que enregistrem quantes persones han sigut curades.
+                  7. Calcul final que es el total de persones curades es = al numero de persones malaltes - el numero de persones malaltes despres de curarles.
+               2. Apartat per valor numeric.
+                  1. Inicialitzem les variables corresponents.
+                  2. Impressió de el numero de malats a curar.
+                  3. Variable que guardara la resposta anterior del numero de malalts.
+                  4. Un for que ens permet curar a les persones, a la par que enregistrem quantes persones han sigut curades i dintre de aquest un if que ens permet cambiar valors negatius a 0.
+         2. Apartat curar per posicio concreta.
+            1. Impressió de introduiex el numero i fila i columna, amb la seva variable corresponen.
+            1. un if per saber si es fara amb percentatge o amb valor numeric.
+               1. Apartat per percentatge.
+                  1. Inicialitzem les variables corresponents.
+                  2. Un while per a que el percentatge sigui entre 0 - 100 el while es fara infinitament fins que s'entri un valor valid.
+                  3. Impressió de el valor del percentatge entre 0 i 100.
+                  4. Variable que guardara la resposta anterior del percentatge.
+                  5. Un if comparan si el percentatge esta entre 0 i 100.
+                  6. La variable del percentantge per la cel·la especificada que es guardad en relació a les coordenades donades anteriorment.
+               2. Apartat per valor numeric.
+                  1. Inicialitzem les variables corresponents.
+                  2. Un while que conte dintre un if que validara si el numero de malalts a curar no sigui superior al numero de malalts que i conte en la cel·la.
+                  3. El calcul del cual a partir de la posicio demanada menys el numero de malalts a curar.
    5. Case 5: desplaçar malalts.
+      1. Inicialitzem les variables corresponents.
+      2. Un while que agrupa tot el codi del case 5, es infinit fins que ja no volguis desplaçar-te mes.
+         1. Un while que serveix per validar el seguent codi a partir de una variable de tipus bolea.
+         2. Impressió de introduiex la fila i la columna amb la seva variable corresponent.
+         3. Un if que serveix per validar si no hi ha cap X en la cel·la especificada, en el cas de que que si torna a fer el while.
+      3. Impressió de els malalats que hi han en aquella cel·la especificada.
+      4. Un while que serveix per validar el seguent codi a partir de una variable de tipus bolea.
+         1. Impressió de quant malalts vols desplaçar amb la seva variable corresponent.
+         2. Un if que indica si el numero de malalts a desplaçar es major al que te en la cel·la que imprimeixi un missatge de error i tornaria a demanar-lo, en cas que sigui correte el bucle es para.
+      5. Un while que ens permet validar si em introduit una tecla correcte (q-w-e-a-d-z-x-c).
+         1. Impressió del menu d'opcions.
+         2. Un switch del qual cada case sera les lletres corresponents amb un default en el cas de que no trobi la lletra que donara un missatge de error.
+         3. Per a cada case de cada lletra compara si la cel·la seleccionada no es moura a una cantonada del taulell, en el cas de que si, es restara pero no es moura res ja que no exisiteix aquella cel·la, en el cas de que que no esta a la vora, es te un altre if del qual compara si no hi ha cap X continguda, si hi ha donara un missatge de error i si no hi ha es fara el calcul per moure, que seria restan les posicions per aixi moure per el taulell.
    6. Case 6: mostrar informacio.
+      1. Conte tres for del cual el primer es guardara un array de tipus string que copia el array base tipus int, el segon una vegada copiada la informació a l'array TableShow(taulell de tipus string) em de remplaçar les cel·les bloquejades amb "X" i per ultim el tercer for que imprimeix tot el taulell amb les X de color vermell.
+      2. Impressió de el total de malalts.
+      3. Impressió de totes les persones curades.
+      4. Impressió de el percentatge que no a complit el confinament.
    7. Case 7: sortir.
+      1. Impressió de la sortida al programa amb el missatge "Fins despres" amb un emoji de color groc.
 ## Decisions de Disseny preses
 Alhora de decidir com voliem el disseny, tots dos estavem d'acord en que voliem un menu (switch) que tingues una apariencia distintiva a la resta del codi per a que tot siguès més legible. Per això mateix vam fer diferents canvis que estaran millor explicats a l'apartat de "Propostes de millora", com canviar el color de les "X" a vermell, el color dels errors a vermell, el contorn del menu...
 També cal dir que alhora de fer qualsevol opció del menu, sortien diferents subopcions, com per exemple el tipus de càlcul del menu, o si es volia aplicar a tot el taulell.
