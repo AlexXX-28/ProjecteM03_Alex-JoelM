@@ -1,11 +1,38 @@
 # Projecte UF1 - Alex & Joel M
 
 ## Esquema principal del projecte
+### Petit Resum
 El nostre projecte comença amb un menu, creat amb un switch, que mostra les diferents opcions que tenim, son 7 cases, ja que l'ultim serveix per "Sortir".
 A continuació tenim en cada case del switch, que s'entra segons l'opció que escollim (1-7).
 Despres simplement tenim un codi diferent per al que es demana en les diferents opcions.
 Però gairebé tot el codi esta format per "for" que fa que ens puguem moure per els arrays, i poder modificar les dades que es demanen.
 Una vegada s'acaba el case que em seleccionat ens demana si volem tornar a utilitzar aquella opció, si diem que si es tornara a executar el mateix codi, pero si diem que no, ens mostrara el menu per a que escollim una nova opció. Això acabarà si escollim l'ultima opció que es la 7 "Sortir".
+### Explicació detallada
+1. Impressió del menu que es va repetin fins que el bucle trobi el resultat del menu, del cual seria "si no es igual a 7 (case 7 = sortir) continua imprimin fins que retorni un 7 del qual el programa acabaria.
+2. Un if per saber si el resultat (s.nextInt) del menu si es correcte...
+   1. Si la llargada del resultat del menu (s.nextInt) es diferent a 1 doncs que imprimeixi el resultat de error.
+   2. Si la llargada del resultat es correcte entra al switch, on per cada case correspon amb el resultat del menu, es a dir, 7 cases + el default en cas de que no hi ha cap resposta bona, que torni una altra cop a demanar (ja que esta contingut dintre del bucle). 
+3. En el cas de la resposta sigui correcte entrem automaticament en el switch i comprobem el resultat per als cases, (per els case del 2 al 6 comença amb un if que serveix per determina si existeix el array a partir d'un boolean, que comença per defecte a false, aixo fa que nomes el primer cop es obligatori fer el primer case).
+   1. Case 1: creacio del taulell.
+      1. Impressio de les diferents opcions (taulell buit i taulell amb malalts).
+      2. Variable que conte l'opció demanada en el anterior punt.
+      3. impressió de les quantitats de files i columnes que vol el usuari.
+      4. Variable que conte l'opció demanada en el anterior punt.
+      5. Creacio de la taula numerica (on aquesta servira per la agafar la informacio demanada).
+      6. Creacio de la taula String (que servira per agafar la informacio de la taula numerica i pasarla a string per fer joc amb les X de les cel·les).
+      7. Un if per fer les accions corresponents a partir de les varibles anterior de taulell buit i taulell amb malalts.
+         1. Si en el cas de que el resultat de la primera impressio es 1, doncs s'ha crea un taulell buit a partir de un bucle per a que cada cel·la contingui el valor 0.
+         2. Si no es el cas anterior doncs creara el taulell amb malalts a partir de un bucle del cual servira per fer que cada cel·la s'ompli amb un valor numeric aleatori (Math.random) de un maxim de 10.
+      8. Es crea un varible on conte un calcul que declara que la quantitat de cel·les bloquejades sigui el total de cel·les de la taula / 4 (Per a que no hi hagi ni poques ni masses).
+      9. A partir de aquesta varible es crean les dos arrays que faran relacio a la posicio de la columna i fila del taulell real creat anteriorment per saber on estaran les X.
+      10. Un for per agregar les X que tindran com a valor 0, a l'hora de imprimir el resutat (case 6) com s'imprimeix el taulell string es fara de la relacio de les dos arrays que s'han creat anteriorment per saber les posicions de les X.
+   2. Case 2: afegir malalts.
+      1. 
+   3. Case 3: transmissió del virus.
+   4. Case 4: curar malalts.
+   5. Case 5: desplaçar malalts.
+   6. Case 6: mostrar informacio.
+   7. Case 7: sortir.
 ## Decisions de Disseny preses
 Alhora de decidir com voliem el disseny, tots dos estavem d'acord en que voliem un menu (switch) que tingues una apariencia distintiva a la resta del codi per a que tot siguès més legible. Per això mateix vam fer diferents canvis que estaran millor explicats a l'apartat de "Propostes de millora", com canviar el color de les "X" a vermell, el color dels errors a vermell, el contorn del menu...
 També cal dir que alhora de fer qualsevol opció del menu, sortien diferents subopcions, com per exemple el tipus de càlcul del menu, o si es volia aplicar a tot el taulell.
