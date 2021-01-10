@@ -27,8 +27,16 @@ Una vegada s'acaba el case que em seleccionat ens demana si volem tornar a utili
       9. A partir de aquesta varible es crean les dos arrays que faran relacio a la posicio de la columna i fila del taulell real creat anteriorment per saber on estaran les X.
       10. Un for per agregar les X que tindran com a valor 0, a l'hora de imprimir el resutat (case 6) com s'imprimeix el taulell string es fara de la relacio de les dos arrays que s'han creat anteriorment per saber les posicions de les X.
    2. Case 2: afegir malalts.
-      1. 
+      1. Un while amb un varible iniciada a 1 , la condicio del while sera mentre sigui diferent a 2.
+      2. Impressió de introduir nummero de files i columnes amb les sabes variables respectivament.
+      3. Impressió de intorduir el numero de malalts a partir de la fila i la columna demanada.
+      4. inserció del valor que vols solapar a la cel·la amb les varibles (coordenades fila i columna) demanades anteriorment.
+      5. Impressió preguntat si vols tornar a afegir malalts [(1) Si (2) No].
+      6. afegir el valor de la impressio anteriror per a la varible utilizada per el while per determinar si vol repetir un altre cop o no.
    3. Case 3: transmissió del virus.
+      1. Impressió preguntan la taxa de transmissió del virus (tant si es enter o decimal).
+      2. Un for dintre de un altre for per recorre el taulell numeric per introduir a cada cel·la el calcul de la taxa de la transmissió del virus.
+      3. Dintre dels for el calcul que es desde la poscicio de la cel·la actualitzada per la transmissio del virus, tot aquest calcul amb un floor per arrodonir cap a baix.
    4. Case 4: curar malalts.
    5. Case 5: desplaçar malalts.
    6. Case 6: mostrar informacio.
