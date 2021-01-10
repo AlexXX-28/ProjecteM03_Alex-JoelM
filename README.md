@@ -5,6 +5,7 @@ El nostre projecte comença amb un menu, creat amb un switch, que mostra les dif
 A continuació tenim en cada case del switch, que s'entra segons l'opció que escollim (1-7).
 Despres simplement tenim un codi diferent per al que es demana en les diferents opcions.
 Però gairebé tot el codi esta format per "for" que fa que ens puguem moure per els arrays, i poder modificar les dades que es demanen.
+Una vegada s'acaba el case que em seleccionat ens demana si volem tornar a utilitzar aquella opció, si diem que si es tornara a executar el mateix codi, pero si diem que no, ens mostrara el menu per a que escollim una nova opció. Això acabarà si escollim l'ultima opció que es la 7 "Sortir".
 ## Decisions de Disseny preses
 Alhora de decidir com voliem el disseny, tots dos estavem d'acord en que voliem un menu (switch) que tingues una apariencia distintiva a la resta del codi per a que tot siguès més legible. Per això mateix vam fer diferents canvis que estaran millor explicats a l'apartat de "Propostes de millora", com canviar el color de les "X" a vermell, el color dels errors a vermell, el contorn del menu...
 També cal dir que alhora de fer qualsevol opció del menu, sortien diferents subopcions, com per exemple el tipus de càlcul del menu, o si es volia aplicar a tot el taulell.
