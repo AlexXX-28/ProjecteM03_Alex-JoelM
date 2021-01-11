@@ -37,15 +37,15 @@ public class Main {
                 switch (numOption) {
                     case "1" -> { //Creació del taulell
                         boolean validated = false;
-                        int optionCaseOne = 0;
+                        String optionCaseOne = "";
                         while (!validated) {
                             System.out.printf("%s\n%s\n", //Diferents opcions del case 1
                                     "1) Taulell buit",
                                     "2) Taulell amb malalts");
                             System.out.print("Opció: ");
-                            optionCaseOne = s.nextInt(); //La variable optionCaseOne serveix per identificar quina opció s'ha escollit
-                            if (optionCaseOne != 1 && optionCaseOne != 2) { // ERROR falta hacer la comprobacion si es un caracter darle error
-                                System.out.println("\033[31mError al introduir l'opció.\033[30m");
+                            optionCaseOne = s.next(); //La variable optionCaseOne serveix per identificar quina opció s'ha escollit i tambe per a validar si es correcte o no.
+                            if (!optionCaseOne.equals("1") && !optionCaseOne.equals("2")) {
+                                System.out.println("\033[31mError en introduir l'opció.\033[30m");
                             } else {
                                 validated = true;
                             }
@@ -56,7 +56,7 @@ public class Main {
                         column = s.nextInt();
                         table = new int[row][column];
                         tableShow = new String[row][column];
-                        if (optionCaseOne == 1) { //Si la variable optionCaseOne es = 1 s'haura escollit "Taullel buit" si no, amb l'else indiquem que s'haura escollit l'opció "Taullel amb Malalts"
+                        if (optionCaseOne.equals("1")) { //Si la variable optionCaseOne es = 1 s'haura escollit "Taullel buit" si no, amb l'else indiquem que s'haura escollit l'opció "Taullel amb Malalts"
                             for (int i = 0; i < row; i++) {
                                 for (int j = 0; j < column; j++) {
                                     table[i][j] = 0;
@@ -407,7 +407,7 @@ public class Main {
                         }
                         System.out.println("El total de malalts es : " + totalSick);
                         System.out.println("El total de persones curades es : " + totalHeal);
-                        System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick );
+                        System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick);
                     }
                     case "7" -> System.out.println("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
                     default -> System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
