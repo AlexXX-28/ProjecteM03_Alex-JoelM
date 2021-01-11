@@ -36,10 +36,20 @@ public class Main {
             } else {
                 switch (numOption) {
                     case "1" -> { //Creació del taulell
-                        System.out.printf("%s\n%s\n", //Diferents opcions del case 1
-                                "1) Taulell buit",
-                                "2) Taulell amb malalts");
-                        int optionCaseOne = s.nextInt(); //La variable optionCaseOne serveix per identificar quina opció s'ha escollit
+                        boolean validated = false;
+                        int optionCaseOne = 0;
+                        while (!validated) {
+                            System.out.printf("%s\n%s\n", //Diferents opcions del case 1
+                                    "1) Taulell buit",
+                                    "2) Taulell amb malalts");
+                            System.out.print("Opció: ");
+                            optionCaseOne = s.nextInt(); //La variable optionCaseOne serveix per identificar quina opció s'ha escollit
+                            if (optionCaseOne != 1 && optionCaseOne != 2) { // ERROR falta hacer la comprobacion si es un caracter darle error
+                                System.out.println("\033[31mError al introduir l'opció.\033[30m");
+                            } else {
+                                validated = true;
+                            }
+                        }
                         System.out.print("Introduiex la quantitat de files: ");
                         row = s.nextInt();
                         System.out.print("Introduiex la quantitat de columnes: ");
@@ -83,6 +93,7 @@ public class Main {
                                         "Vols continuar introduint malalts? ", //Això ens permet no sortir del case 2 i poder continuar afegint malalts
                                         "1) Si",
                                         "2) No");
+                                System.out.print("Opció: ");
                                 optionCaseTwo = s.nextInt();
                             }
                         } else {
@@ -109,10 +120,12 @@ public class Main {
                             System.out.printf("%s\n%s\n", //Diferents opcions del case 4
                                     "1) Curar tota la taula",
                                     "2) Curar posicio concreta");
+                            System.out.print("Opció: ");
                             int optionCaseFour = s.nextInt();
                             System.out.printf("%s\n%s\n", //Diferents opcions de com volem curar, amb percentatge o amb valor numeric
                                     "1) Curar amb percentatge",
                                     "2) Curar amb valor numeric");
+                            System.out.print("Opció: ");
                             int numericOrPercentage = s.nextInt();
                             if (optionCaseFour == 1) {
                                 if (numericOrPercentage == 1) {
@@ -355,6 +368,7 @@ public class Main {
                                         "Vols continuar desplaçant?",
                                         "1) Si",
                                         "2) No");
+                                System.out.print("Opció: ");
                                 caseFive = s.nextInt();
                                 malaltsBol = false;
                                 keyMalaltsBol = false;
