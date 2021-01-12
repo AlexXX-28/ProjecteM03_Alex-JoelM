@@ -11,9 +11,9 @@ public class Main {
         int row = 0;
         int column = 0;
         int cellBlocked = 0;
-        int totalSick = 0;
+        int totalSick;
         int totalHeal = 0;
-        int totalHealCompare = 0;
+        int totalHealCompare;
         int totalLockdown = 0;
         boolean tableCreate = false;
         Scanner s = new Scanner(System.in);
@@ -148,7 +148,6 @@ public class Main {
                                             totalHealCompare += table[i][j];
                                         }
                                     }
-                                    totalHeal += totalSick - totalHealCompare; //El total de persones curades es = al numero de persones malaltes - el numero de persones malaltes despres de curarles
                                 } else {
                                     System.out.print("Introdueix el número de malalts a curar: ");
                                     int heal = s.nextInt();
@@ -162,7 +161,6 @@ public class Main {
                                             totalHealCompare += table[i][j];
                                         }
                                     }
-                                    totalHeal += totalSick - totalHealCompare;
                                 }
                             } else {
                                 System.out.print("Introdueix la fila: ");
@@ -184,8 +182,6 @@ public class Main {
                                     }
                                     totalSick = table[insertRow - 1][insertColumn - 1];
                                     table[insertRow - 1][insertColumn - 1] -= (int) (table[insertRow - 1][insertColumn - 1] * healFloat);
-                                    totalHealCompare = table[insertRow - 1][insertColumn - 1]; // Com es una sola cel·la no cal comparar amb totes les cel·les com abans, nomes la seleccionada
-                                    totalHeal += totalSick - totalHealCompare;
                                 } else {
                                     int healInt = 0;
                                     boolean validated = false;
@@ -200,10 +196,10 @@ public class Main {
                                     }
                                     totalSick = table[insertRow - 1][insertColumn - 1];
                                     table[insertRow - 1][insertColumn - 1] -= healInt;
-                                    totalHealCompare = table[insertRow - 1][insertColumn - 1];
-                                    totalHeal += totalSick - totalHealCompare;
                                 }
+                                totalHealCompare = table[insertRow - 1][insertColumn - 1];
                             }
+                            totalHeal += totalSick - totalHealCompare; //El total de persones curades es = al numero de persones malaltes - el numero de persones malaltes despres de curarles
                         } else {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
                         }
@@ -407,7 +403,12 @@ public class Main {
                         }
                         System.out.println("El total de malalts es : " + totalSick);
                         System.out.println("El total de persones curades es : " + totalHeal);
-                        System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick);
+                        if (totalLockdown != 0 ){
+                            System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick);
+                        } else {
+                            System.out.println("El percentatge que no ha complit el confinament es : 0");
+                        }
+
                     }
                     case "7" -> System.out.println("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
                     default -> System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
