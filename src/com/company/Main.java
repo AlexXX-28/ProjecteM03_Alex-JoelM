@@ -422,9 +422,9 @@ public class Main {
                         System.out.println("El total de malalts es : " + totalSick);
                         System.out.println("El total de persones curades es : " + totalHeal);
                         if (totalLockdown != 0 ){
-                            System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick);
+                            System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick + "%");
                         } else {
-                            System.out.println("El percentatge que no ha complit el confinament es : 0");
+                            System.out.println("El percentatge que no ha complit el confinament es : 0%");
                         }
 
                     }
