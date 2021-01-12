@@ -16,6 +16,7 @@ public class Main {
         int totalHealCompare;
         int totalLockdown = 0;
         boolean tableCreate = false;
+        boolean validated;
         Scanner s = new Scanner(System.in);
         String numOption = "0";
         while (!numOption.equals("7")) { //El while acabara quan al escollir l'opció 7 (Sortir)
@@ -32,11 +33,11 @@ public class Main {
                     "Introduiex un numero del 1 al 7 per seleccionar l'opció: ");
             numOption = s.next();
             if (numOption.length() != 1) {
-                System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m"); // Els diferents errors que puguin sortir es mostraran amb color vermell = \033[31m i per a que torni a printar en color negre = \033[30m
+                System.out.println("\033[31mError en introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m"); // Els diferents errors que puguin sortir es mostraran amb color vermell = \033[31m i per a que torni a printar en color negre = \033[30m
             } else {
                 switch (numOption) {
                     case "1" -> { //Creació del taulell
-                        boolean validated = false;
+                        validated = false;
                         String optionCaseOne = "";
                         while (!validated) {
                             System.out.printf("%s\n%s\n", //Diferents opcions del case 1
@@ -81,20 +82,28 @@ public class Main {
                     }
                     case "2" -> { //Afegir Malalts
                         if (tableCreate) { //Per als case del 2-6 hi ha un validador que ens permet donar missatge d'error si no s'ha creat cap taula
-                            int optionCaseTwo = 1;
-                            while (optionCaseTwo != 2) {
+                            String optionCaseTwo = "1";
+                            while (optionCaseTwo.equals("1")) {
                                 System.out.print("Introduiex la fila: ");
                                 int insertRow = s.nextInt(); //Aquesta variable ens permet seleccionar la fila
                                 System.out.print("Introduiex la columna: ");
                                 int insertColumn = s.nextInt(); //Aquesta variable ens permet seleccionar la columna
                                 System.out.print("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                                 table[insertRow - 1][insertColumn - 1] = s.nextInt();
+                                validated = false;
+                                while (!validated){
                                 System.out.printf("%s\n%s\n%s\n",
                                         "Vols continuar introduint malalts? ", //Això ens permet no sortir del case 2 i poder continuar afegint malalts
                                         "1) Si",
                                         "2) No");
                                 System.out.print("Opció: ");
-                                optionCaseTwo = s.nextInt();
+                                optionCaseTwo = s.next();
+                                    if (!optionCaseTwo.equals("1") && !optionCaseTwo.equals("2")) {
+                                        System.out.println("\033[31mError en introduir l'opció.\033[30m");
+                                    } else {
+                                        validated = true;
+                                    }
+                                }
                             }
                         } else {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
@@ -117,25 +126,34 @@ public class Main {
                         totalHealCompare = 0; //Aquesta variable ens permet comparar les persones malaltes despres d'haver-les curat
                         totalSick = 0; //Aquesta variable ens permet saber quantes persones malaltes hi ha abans de curarles
                         if (tableCreate) {
-                            System.out.printf("%s\n%s\n", //Diferents opcions del case 4
-                                    "1) Curar tota la taula",
-                                    "2) Curar posicio concreta");
-                            System.out.print("Opció: ");
-                            int optionCaseFour = s.nextInt();
+                            validated = false;
+                            String optionCaseFour = "";
+                            while (!validated) {
+                                System.out.printf("%s\n%s\n", //Diferents opcions del case 4
+                                        "1) Curar tota la taula",
+                                        "2) Curar posicio concreta");
+                                System.out.print("Opció: ");
+                                optionCaseFour = s.next();
+                                if (!optionCaseFour.equals("1") && !optionCaseFour.equals("2")) {
+                                    System.out.println("\033[31mError en introduir l'opció.\033[30m");
+                                } else {
+                                    validated = true;
+                                }
+                            }
                             System.out.printf("%s\n%s\n", //Diferents opcions de com volem curar, amb percentatge o amb valor numeric
                                     "1) Curar amb percentatge",
                                     "2) Curar amb valor numeric");
                             System.out.print("Opció: ");
                             int numericOrPercentage = s.nextInt();
-                            if (optionCaseFour == 1) {
+                            if (optionCaseFour.equals("1")) {
                                 if (numericOrPercentage == 1) {
                                     float healFloat = 0;
-                                    boolean validated = false;
+                                    validated = false;
                                     while (!validated) { // Per a que el percentatge sigui entre 0 - 100 el while es fara infinitament fins que s'entri un valor valid
                                         System.out.print("Introdueix el percentatge (sense el simbol %) de 0 a 100: ");
                                         healFloat = s.nextInt();
                                         if (healFloat > 100 || healFloat < 0) {
-                                            System.out.println("\033[31mError al introduir el percentatge de malalts.\033[30m");
+                                            System.out.println("\033[31mError en introduir el percentatge de malalts.\033[30m");
                                         } else {
                                             validated = true;
                                         }
@@ -169,12 +187,12 @@ public class Main {
                                 int insertColumn = s.nextInt();
                                 if (numericOrPercentage == 1) {
                                     float healFloat = 0;
-                                    boolean validated = false;
+                                    validated = false;
                                     while (!validated) {
                                         System.out.print("Introdueix el percentatge (sense el simbol %) de 0 a 100: ");
                                         healFloat = s.nextInt();
                                         if (healFloat > 100 || healFloat < 0) {
-                                            System.out.println("\033[31mError al introduir el percentatge de malalts.\033[30m");
+                                            System.out.println("\033[31mError en introduir el percentatge de malalts.\033[30m");
                                         } else {
                                             validated = true;
                                         }
@@ -184,12 +202,12 @@ public class Main {
                                     table[insertRow - 1][insertColumn - 1] -= (int) (table[insertRow - 1][insertColumn - 1] * healFloat);
                                 } else {
                                     int healInt = 0;
-                                    boolean validated = false;
+                                    validated = false;
                                     while (!validated) {
                                         System.out.print("Introdueix el número de malalts a curar: ");
                                         healInt = s.nextInt();
                                         if (table[insertRow - 1][insertColumn - 1] < healInt || healInt < 0) {
-                                            System.out.println("\033[31mError al introduir el numero de malalts.\033[30m");
+                                            System.out.println("\033[31mError en introduir el numero de malalts.\033[30m");
                                         } else {
                                             validated = true;
                                         }
@@ -231,7 +249,7 @@ public class Main {
                                     malaltsDesplasar = s.nextInt();
                                     totalLockdown += malaltsDesplasar; //Per a saber el percentatge de les persones que es salten el confinament
                                     if (malaltsDesplasar > table[insertRow - 1][insertColumn - 1]) {
-                                        System.out.println("\033[31mError al introduir el valor " + malaltsDesplasar + " supera el numero de malalts.\033[30m");
+                                        System.out.println("\033[31mError en introduir el valor " + malaltsDesplasar + " supera el numero de malalts.\033[30m");
                                     } else {
                                         malaltsBol = true;
                                     }
@@ -357,7 +375,7 @@ public class Main {
                                             }
                                             keyMalaltsBol = true;
                                         }
-                                        default -> System.out.println("\033[31mError al introduir el valor " + keyDisplacement + " desitjat, torna a intentar...\033[30m");
+                                        default -> System.out.println("\033[31mError en introduir el valor " + keyDisplacement + " desitjat, torna a intentar...\033[30m");
                                     }
                                 }
                                 System.out.printf("%s\n%s\n%s\n", //Opcions que ens permeten tornar a desplaçar
@@ -411,7 +429,7 @@ public class Main {
 
                     }
                     case "7" -> System.out.println("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
-                    default -> System.out.println("\033[31mError al introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
+                    default -> System.out.println("\033[31mError en introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
                 }
             }
         }
