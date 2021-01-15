@@ -36,7 +36,7 @@ public class Main {
                 System.out.println("\033[31mError en introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m"); // Els diferents errors que puguin sortir es mostraran amb color vermell = \033[31m i per a que torni a printar en color negre = \033[30m
             } else {
                 switch (numOption) {
-                    case "1" -> { //Creació del taulell
+                    case "1":  //Creació del taulell
                         validated = false;
                         String optionCaseOne = "";
                         while (!validated) {
@@ -79,8 +79,8 @@ public class Main {
                             table[arrayColumn[i]][arrayRow[i]] = 0; // El valor de les cel·les bloquejades ha de ser 0
                         }
                         tableCreate = true;
-                    }
-                    case "2" -> { //Afegir Malalts
+                        break;
+                    case "2": //Afegir Malalts
                         if (tableCreate) { //Per als case del 2-6 hi ha un validador que ens permet donar missatge d'error si no s'ha creat cap taula
                             String optionCaseTwo = "1";
                             while (optionCaseTwo.equals("1")) {
@@ -91,13 +91,13 @@ public class Main {
                                 System.out.print("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                                 table[insertRow - 1][insertColumn - 1] = s.nextInt();
                                 validated = false;
-                                while (!validated){
-                                System.out.printf("%s\n%s\n%s\n",
-                                        "Vols continuar introduint malalts? ", //Això ens permet no sortir del case 2 i poder continuar afegint malalts
-                                        "1) Si",
-                                        "2) No");
-                                System.out.print("Opció: ");
-                                optionCaseTwo = s.next();
+                                while (!validated) {
+                                    System.out.printf("%s\n%s\n%s\n",
+                                            "Vols continuar introduint malalts? ", //Això ens permet no sortir del case 2 i poder continuar afegint malalts
+                                            "1) Si",
+                                            "2) No");
+                                    System.out.print("Opció: ");
+                                    optionCaseTwo = s.next();
                                     if (!optionCaseTwo.equals("1") && !optionCaseTwo.equals("2")) {
                                         System.out.println("\033[31mError en introduir l'opció.\033[30m");
                                     } else {
@@ -108,8 +108,8 @@ public class Main {
                         } else {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
                         }
-                    }
-                    case "3" -> { //Transmissió del virus
+                        break;
+                    case "3": //Transmissió del virus
                         if (tableCreate) {
                             System.out.print("Introdueix la taxa de transmissió del virus: ");
                             double rt = s.nextDouble();
@@ -121,8 +121,8 @@ public class Main {
                         } else {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
                         }
-                    }
-                    case "4" -> {  //Curar malalts
+                        break;
+                    case "4":  //Curar malalts
                         totalHealCompare = 0; //Aquesta variable ens permet comparar les persones malaltes despres d'haver-les curat
                         totalSick = 0; //Aquesta variable ens permet saber quantes persones malaltes hi ha abans de curarles
                         if (tableCreate) {
@@ -221,8 +221,8 @@ public class Main {
                         } else {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
                         }
-                    }
-                    case "5" -> {
+                        break;
+                    case "5":
                         if (tableCreate) {
                             int malaltsDesplasar = 0; //Quantitat de malalats que es desplaçaran
                             int insertRow = 0;
@@ -263,7 +263,7 @@ public class Main {
                                     System.out.print("Introdueix el valor: ");
                                     String keyDisplacement = s.next().toLowerCase(); //Per a no tenir problemes amb mayuscula o minuscula
                                     switch (keyDisplacement) {
-                                        case "q" -> {
+                                        case "q":
                                             if (insertRow - 1 == 0 || insertColumn - 1 == 0) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -276,8 +276,8 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        case "w" -> {
+                                            break;
+                                        case "w":
                                             if (insertRow - 1 == 0) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -290,8 +290,8 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        case "e" -> {
+                                            break;
+                                        case "e":
                                             if (insertRow - 1 == 0 || insertColumn - 1 >= column) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -304,8 +304,8 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        case "a" -> {
+                                            break;
+                                        case "a":
                                             if (insertColumn - 1 == 0) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -318,8 +318,8 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        case "d" -> {
+                                            break;
+                                        case "d":
                                             if (insertColumn - 1 >= column - 1) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -332,8 +332,8 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        case "z" -> {
+                                            break;
+                                        case "z":
                                             if (insertRow - 1 >= row - 1 || insertColumn - 1 == 0) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -346,8 +346,8 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        case "x" -> {
+                                            break;
+                                        case "x":
                                             if (insertRow - 1 >= row - 1) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -360,8 +360,8 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        case "c" -> {
+                                            break;
+                                        case "c":
                                             if (insertRow - 1 >= row - 1 || insertColumn - 1 >= column - 1) {
                                                 table[insertRow - 1][insertColumn - 1] -= malaltsDesplasar;
                                             } else {
@@ -374,8 +374,9 @@ public class Main {
                                                 }
                                             }
                                             keyMalaltsBol = true;
-                                        }
-                                        default -> System.out.println("\033[31mError en introduir el valor " + keyDisplacement + " desitjat, torna a intentar...\033[30m");
+                                            break;
+                                        default:
+                                            System.out.println("\033[31mError en introduir el valor " + keyDisplacement + " desitjat, torna a intentar...\033[30m");
                                     }
                                 }
                                 System.out.printf("%s\n%s\n%s\n", //Opcions que ens permeten tornar a desplaçar
@@ -391,8 +392,7 @@ public class Main {
                         } else {
                             System.out.println("\033[31mEl taulell no s'ha creat\033[30m");
                         }
-                    }
-                    case "6" -> {
+                    case "6":
                         totalSick = 0;
                         if (tableCreate) {
                             for (int i = 0; i < row; i++) {
@@ -421,15 +421,17 @@ public class Main {
                         }
                         System.out.println("El total de malalts es : " + totalSick);
                         System.out.println("El total de persones curades es : " + totalHeal);
-                        if (totalLockdown != 0 ){
+                        if (totalLockdown != 0) {
                             System.out.println("El percentatge que no ha complit el confinament es : " + totalLockdown * 100 / totalSick + "%");
                         } else {
                             System.out.println("El percentatge que no ha complit el confinament es : 0%");
                         }
-
-                    }
-                    case "7" -> System.out.println("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
-                    default -> System.out.println("\033[31mError en introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
+                        break;
+                    case "7":
+                        System.out.println("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
+                        break;
+                    default:
+                        System.out.println("\033[31mError en introduir el valor " + numOption + " desitjat, torna a intentar...\033[30m");
                 }
             }
         }
