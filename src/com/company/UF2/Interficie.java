@@ -1,6 +1,8 @@
 package com.company.UF2;
 
 
+import java.util.Scanner;
+
 public class Interficie {
 
     /**
@@ -27,13 +29,33 @@ public class Interficie {
 
     /**
      * Mostra la informació per pantalla de forma simple
-     * @param missatge Missatge a mostrar per pantalla
+     * @param missatge1 Missatge1 a mostrar per pantalla
+     * @param missatge2 Missatge2 a mostrar per pantalla
      */
-    public static void mostrarMissatge(String missatge){
-        System.out.println(missatge);
+    public static void mostrarOpcions(String missatge1,String missatge2){
+        System.out.println("1) " + missatge1);
+        System.out.println("2) " + missatge2);
     }
 
-
+    public static int validateRepeat(){
+        int opcio;
+        do {
+            Scanner s = new Scanner(System.in);
+            System.out.println("Vols continuar introduint malalts?");
+            mostrarOpcions("Si", "No");
+            System.out.print("Opció: ");
+            opcio = s.nextInt();
+        }while (opcio != 1 && opcio != 2);
+        return opcio;
+    }
+    public static void showTable(int[][] array){
+        for (int i = 0; i < array.length ; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
     /**
      * Mostra la informació per pantalla en format capçalera
      * @param missatge Missatge a mostrar per pantalla en format capçalera
@@ -43,6 +65,10 @@ public class Interficie {
         System.out.println("______________________________");
         System.out.println(missatge);
         System.out.println("______________________________");
+    }
+
+    public static void mostrarMisssatge(String missatge){
+        System.out.println(missatge);
     }
     
 }
