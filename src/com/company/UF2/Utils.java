@@ -1,4 +1,4 @@
-package com.company;
+package com.company.UF2;
 
 import java.util.Scanner;
 

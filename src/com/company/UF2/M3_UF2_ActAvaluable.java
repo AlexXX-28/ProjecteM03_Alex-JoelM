@@ -1,5 +1,5 @@
 
-package com.company;
+package com.company.UF2;
 
 
 public class M3_UF2_ActAvaluable {
