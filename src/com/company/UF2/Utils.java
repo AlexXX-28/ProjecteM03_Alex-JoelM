@@ -33,7 +33,7 @@ public class Utils {
         return ret;
     }
 
-    public static int validateEnterLimits(String missatge, String missatgeError, int llargada) {
+    public static int validateEnterLimits(String missatge, String missatgeError, int max,int min) {
         Scanner s = new Scanner(System.in);
         int ret;
         boolean correct;
@@ -47,10 +47,10 @@ public class Utils {
                 }
             } while (!correct);
             ret = s.nextInt();
-            if (ret > llargada || ret <= 0) {
+            if (ret > max || ret <= min) {
                 System.out.println(VERMELL + "Error torna a intentar, el valor esta fora dels limits" + RESET);
             }
-        } while (ret > llargada || ret <= 0);
+        } while (ret > max || ret <= min);
         s.nextLine();
         return ret;
     }

@@ -60,8 +60,8 @@ public class M3_UF2_ActAvaluable {
                     break;
                 case 2: //Afegir Malalts
                     do {
-                        int insertRow = u.validateEnterLimits("Introduiex la fila: ", VERMELL + "Error en introduir la fila" + RESET, row);
-                        int insertColumn = u.validateEnterLimits("Introduiex la columna: ", VERMELL + "Error en introduir la columna" + RESET, column);
+                        int insertRow = u.validateEnterLimits("Introduiex la fila: ", VERMELL + "Error en introduir la fila" + RESET, row,0);
+                        int insertColumn = u.validateEnterLimits("Introduiex la columna: ", VERMELL + "Error en introduir la columna" + RESET, column,0);
                         i.mostrarMisssatge("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                         g.insertSick(table, insertRow, insertColumn);
                     } while (i.validateRepeat() == 1);
