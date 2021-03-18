@@ -34,8 +34,8 @@ public class M3_UF2_ActAvaluable {
         int option;
         int row = 0;
         int column = 0;
-        int totalHealCompare = 0;
-        int totalSick = 0;
+        int totalHealCompare;
+        int totalSick;
         String errorEnter = "Error en introduir l'opció";
         boolean tableCreate = false;
         do {
@@ -56,8 +56,8 @@ public class M3_UF2_ActAvaluable {
                     break;
                 case 2: //Afegir Malalts
                     do {
-                        int insertRow = u.validateEnterLimits("Introduiex la fila: ", i.returnErrorVermell("Error en introduir la fila"), row,0);
-                        int insertColumn = u.validateEnterLimits("Introduiex la columna: ", i.returnErrorVermell("Error en introduir la columna"), column,0);
+                        int insertRow = u.validateEnterLimits("Introduiex la fila: ", i.returnErrorVermell("Error en introduir la fila"), row, 0);
+                        int insertColumn = u.validateEnterLimits("Introduiex la columna: ", i.returnErrorVermell("Error en introduir la columna"), column, 0);
                         i.printSentence("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                         g.insertSick(table, insertRow, insertColumn);
                     } while (i.validateRepeat() == 1);
@@ -65,7 +65,7 @@ public class M3_UF2_ActAvaluable {
                 case 3: //Transmissió del virus
                     Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
                     if (tableCreate) {
-                        g.transmitSick(table,row,column);
+                        g.transmitSick(table, row, column);
                     } else {
                         System.out.println("El taulell no s'ha creat");
                     }

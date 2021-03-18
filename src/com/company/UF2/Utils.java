@@ -44,7 +44,7 @@ public class Utils {
             } while (!correct);
             ret = s.nextInt();
             if (ret > max || ret <= min) {
-                Interficie.printErrorVermell("Error torna a intentar, el valor esta fora dels limits");
+                Interficie.printErrorVermell("Error torna a intentar, el valor esta fora dels limits\n");
             }
         } while (ret > max || ret <= min);
         s.nextLine();

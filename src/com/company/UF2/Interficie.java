@@ -14,12 +14,13 @@ public class Interficie {
 
 
     public static void mostrarMenu(String[] menu){
+        printSentenceBlue("*************************\n");
         for (int i = 0; i < menu.length; i++) {
-            if(i == 0 || i == menu.length){
-               printSentenceBlue("*************");
-            }
-            System.out.println(menu[i]);
+            printSentenceBlue("* ");
+            System.out.print(menu[i]);
+            printSentenceBlue("*\n");
         }
+        printSentenceBlue("*************************\n");
     }
 
     public static void mostrarOpcions(String missatge1,String missatge2){
@@ -46,17 +47,17 @@ public class Interficie {
         }
     }
     public static void printSentence(String sentence){
-        System.out.println(sentence);
+        System.out.print(sentence);
     }
     public static void printSentenceBlue(String sentence){
-        System.out.println(BLUE + sentence + RESET);
+        System.out.print(BLUE + sentence + RESET);
     }
 
     public static String returnErrorVermell(String sentence){
         return (VERMELL + sentence + RESET);
     }
     public static void printErrorVermell(String sentence){
-        System.out.println(VERMELL + sentence + RESET);
+        System.out.print(VERMELL + sentence + RESET);
     }
     public static String printSentenceCyan(String sentence){
         return (CYAN + sentence + RESET);
