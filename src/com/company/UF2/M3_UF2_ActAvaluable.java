@@ -23,15 +23,17 @@ public class M3_UF2_ActAvaluable {
      */
     public void start() {
         String[] menu = {
-                "MENÚ",
-                "1. Carrega table",
-                "2. Introduir malalts",
-                "3. Transmitir Virus",
-                "4. Curar malats",
-                "5. Desplaçar malalts",
-                "6. Mostrar informació",
-                "7. Configuració",
-                "0. Sortir"
+                BLUE + "*************************",
+                "*" + RESET + " MENÚ                  " + BLUE + "*",
+                "*" + RESET + " 1. Carrega table      " + BLUE + "*",
+                "*" + RESET + " 2. Introduir malalts  " + BLUE + "*",
+                "*" + RESET + " 3. Transmitir Virus   " + BLUE + "*",
+                "*" + RESET + " 4. Curar malats       " + BLUE + "*",
+                "*" + RESET + " 5. Desplaçar malalts  " + BLUE + "*",
+                "*" + RESET + " 6. Mostrar informació " + BLUE + "*",
+                "*" + RESET + " 7. Configuració       " + BLUE + "*",
+                "*" + RESET + " 0. Sortir             " + BLUE + "*",
+                "*************************" + RESET
         };
         GestorTaulell g = new GestorTaulell();
         Interficie i = new Interficie();
@@ -62,7 +64,7 @@ public class M3_UF2_ActAvaluable {
                         int insertColumn = u.validateEnterLimits("Introduiex la columna: ", VERMELL + "Error en introduir la columna" + RESET, column);
                         i.mostrarMisssatge("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                         g.insertSick(table, insertRow, insertColumn);
-                    }while (i.validateRepeat() == 1);
+                    } while (i.validateRepeat() == 1);
                     break;
                 case 3: //Transmissió del virus
                     break;
