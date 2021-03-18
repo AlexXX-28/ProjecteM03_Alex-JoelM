@@ -87,6 +87,7 @@ public class M3_UF2_ActAvaluable {
                     } else {
                         Interficie.printErrorVermell("El taulell no s'ha creat"); // IDIOMA
                     }
+                    System.out.println();
                     break;
                 case 5: //Desplaçar malalts
                     break;
