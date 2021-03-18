@@ -23,4 +23,12 @@ public class GestorTaulell {
     public void insertSick(int[][]table, int insertRow, int insertColumn){
         table[insertRow-1][insertColumn-1] = s.nextInt();
     }
+    public void transmitSick(int[][]table, int row, int column){
+        double rt = s.nextDouble();
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                table[i][j] += Math.floor(table[i][j] * rt); // El calcul s'ha d'arrodonir cap a baix, ja que no poden haver ex: 1,5 persones malaltes per tant amb el Math.floor 1,5 = 1
+            }
+        }
+    }
 }

@@ -34,6 +34,10 @@ public class M3_UF2_ActAvaluable {
         int option;
         int row = 0;
         int column = 0;
+        int totalHealCompare = 0;
+        int totalSick = 0;
+        String errorEnter = "Error en introduir l'opció";
+        boolean tableCreate = false;
         do {
             i.mostrarMenu(menu);
             option = u.validarEnter(i.printCyan("Introduiex un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
@@ -41,13 +45,14 @@ public class M3_UF2_ActAvaluable {
                 case 1: //Creació del taulell
                     do {
                         i.mostrarOpcions("Taulell buit", "Taulell amb malalts");
-                        option = u.validarEnter(i.printCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell("Error en introduir l'opció."));
+                        option = u.validarEnter(i.printCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell(errorEnter));
                     } while (option != 1 && option != 2);
-                    row = u.validarEnter("Introduiex la quantitat de files: ", i.returnErrorVermell("Error en introduir l'opció."));
-                    column = u.validarEnter("Introduiex la quantitat de columnes: ", i.returnErrorVermell("Error en introduir l'opció."));
+                    row = u.validarEnter("Introduiex la quantitat de files: ", i.returnErrorVermell(errorEnter));
+                    column = u.validarEnter("Introduiex la quantitat de columnes: ", i.returnErrorVermell(errorEnter));
                     table = new int[row][column];
                     g.carregarDades(table, row, column, option);
                     // fer les X (cellblocked).
+                    tableCreate = true;
                     break;
                 case 2: //Afegir Malalts
                     do {
@@ -58,8 +63,30 @@ public class M3_UF2_ActAvaluable {
                     } while (i.validateRepeat() == 1);
                     break;
                 case 3: //Transmissió del virus
+                    Interficie.printCyan("Introdueix la taxa de transmissió del virus: ");
+                    if (tableCreate) {
+                        g.transmitSick(table,row,column);
+                    } else {
+                        System.out.println("El taulell no s'ha creat");
+                    }
                     break;
                 case 4: //Curar malalts
+                    totalHealCompare = 0;
+                    totalSick = 0;
+                    int numericOrPercentage = 0;
+                    if (tableCreate) {
+                        do {
+                            i.mostrarOpcions("Curar tota la taula", "Curar posicio concreta");
+                            option = u.validarEnter(Interficie.printCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
+                        } while (option != 1 && option != 2);
+                        do {
+                            i.mostrarOpcions("Curar amb percentatge", "Curar amb valor numeric");
+                            numericOrPercentage = u.validarEnter(Interficie.printCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
+                        } while (numericOrPercentage != 1 && numericOrPercentage != 2);
+
+                    } else {
+                        Interficie.printErrorVermell("El taulell no s'ha creat"); // IDIOMA
+                    }
                     break;
                 case 5: //Desplaçar malalts
                     break;
