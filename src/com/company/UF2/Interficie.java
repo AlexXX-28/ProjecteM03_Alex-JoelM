@@ -5,6 +5,13 @@ import java.util.Scanner;
 
 public class Interficie {
 
+    Scanner s = new Scanner(System.in);
+    public static final String RESET = "\033[0m";
+    public static final String VERMELL = "\033[31m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String YELLOW = "\u001B[33m";
+
     /**
      * Mostra la informació d'un array per pantalla de forma simple
      * @param dades Array d'string amb informació
@@ -37,10 +44,9 @@ public class Interficie {
         System.out.println("2) " + missatge2);
     }
 
-    public static int validateRepeat(){
+    public int validateRepeat(){
         int opcio;
         do {
-            Scanner s = new Scanner(System.in);
             System.out.println("Vols continuar introduint malalts?");
             mostrarOpcions("Si", "No");
             System.out.print("Opció: ");
@@ -56,19 +62,18 @@ public class Interficie {
             System.out.println();
         }
     }
-    /**
-     * Mostra la informació per pantalla en format capçalera
-     * @param missatge Missatge a mostrar per pantalla en format capçalera
-     */
-    public static void mostrarCapçalera(String missatge){
-
-        System.out.println("______________________________");
-        System.out.println(missatge);
-        System.out.println("______________________________");
+    public static void printSentence(String sentence){
+        System.out.println(sentence);
     }
 
-    public static void mostrarMisssatge(String missatge){
-        System.out.println(missatge);
+    public static String returnErrorVermell(String sentence){
+        return (VERMELL + sentence + RESET);
+    }
+    public static void printErrorVermell(String sentence){
+        System.out.println(VERMELL + sentence + RESET);
+    }
+    public static String printCyan(String sentence){
+        return (CYAN + sentence + RESET);
     }
     
 }

@@ -4,12 +4,6 @@ package com.company.UF2;
 
 public class M3_UF2_ActAvaluable {
 
-    public static final String RESET = "\033[0m";
-    public static final String VERMELL = "\033[31m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String CYAN = "\u001B[36m";
-    public static final String YELLOW = "\u001B[33m";
-
 
     public static void main(String[] args) {
         M3_UF2_ActAvaluable solucio = new M3_UF2_ActAvaluable();
@@ -23,17 +17,15 @@ public class M3_UF2_ActAvaluable {
      */
     public void start() {
         String[] menu = {
-                BLUE + "*************************",
-                "*" + RESET + " MENÚ                  " + BLUE + "*",
-                "*" + RESET + " 1. Carrega table      " + BLUE + "*",
-                "*" + RESET + " 2. Introduir malalts  " + BLUE + "*",
-                "*" + RESET + " 3. Transmitir Virus   " + BLUE + "*",
-                "*" + RESET + " 4. Curar malats       " + BLUE + "*",
-                "*" + RESET + " 5. Desplaçar malalts  " + BLUE + "*",
-                "*" + RESET + " 6. Mostrar informació " + BLUE + "*",
-                "*" + RESET + " 7. Configuració       " + BLUE + "*",
-                "*" + RESET + " 0. Sortir             " + BLUE + "*",
-                "*************************" + RESET
+                "MENÚ                  ",
+                "1. Carrega table      ",
+                "2. Introduir malalts  ",
+                "3. Transmitir Virus   ",
+                "4. Curar malats       ",
+                "5. Desplaçar malalts  ",
+                "6. Mostrar informació ",
+                "7. Configuració       ",
+                "0. Sortir             "
         };
         GestorTaulell g = new GestorTaulell();
         Interficie i = new Interficie();
@@ -42,27 +34,26 @@ public class M3_UF2_ActAvaluable {
         int option;
         int row = 0;
         int column = 0;
-        String errorEnter = VERMELL + "Error en introduir l'opció." + RESET;
         do {
             i.mostrarMenu(menu);
-            option = u.validarEnter(CYAN + "Introduiex un numero del 1 al 7 per seleccionar l'opció: " + RESET, VERMELL + "Error en introduir el valor desitjat, torna a intentar..." + RESET);
+            option = u.validarEnter(i.printCyan("Introduiex un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
             switch (option) {
                 case 1: //Creació del taulell
                     do {
                         i.mostrarOpcions("Taulell buit", "Taulell amb malalts");
-                        option = u.validarEnter(CYAN + "Selecciona una de les seguents opcions: " + RESET, errorEnter);
+                        option = u.validarEnter(i.printCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell("Error en introduir l'opció."));
                     } while (option != 1 && option != 2);
-                    row = u.validarEnter("Introduiex la quantitat de files: ", errorEnter);
-                    column = u.validarEnter("Introduiex la quantitat de columnes: ", errorEnter);
+                    row = u.validarEnter("Introduiex la quantitat de files: ", i.returnErrorVermell("Error en introduir l'opció."));
+                    column = u.validarEnter("Introduiex la quantitat de columnes: ", i.returnErrorVermell("Error en introduir l'opció."));
                     table = new int[row][column];
                     g.carregarDades(table, row, column, option);
                     // fer les X (cellblocked).
                     break;
                 case 2: //Afegir Malalts
                     do {
-                        int insertRow = u.validateEnterLimits("Introduiex la fila: ", VERMELL + "Error en introduir la fila" + RESET, row,0);
-                        int insertColumn = u.validateEnterLimits("Introduiex la columna: ", VERMELL + "Error en introduir la columna" + RESET, column,0);
-                        i.mostrarMisssatge("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
+                        int insertRow = u.validateEnterLimits("Introduiex la fila: ", i.returnErrorVermell("Error en introduir la fila"), row,0);
+                        int insertColumn = u.validateEnterLimits("Introduiex la columna: ", i.returnErrorVermell("Error en introduir la columna"), column,0);
+                        i.printSentence("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                         g.insertSick(table, insertRow, insertColumn);
                     } while (i.validateRepeat() == 1);
                     break;

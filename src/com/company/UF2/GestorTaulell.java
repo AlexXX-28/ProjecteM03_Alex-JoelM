@@ -3,6 +3,7 @@ package com.company.UF2;
 import java.util.Scanner;
 
 public class GestorTaulell {
+    Scanner s = new Scanner(System.in);
 
     public void carregarDades(int[][] table, int row, int column, int option) {
         if (option == 1) {
@@ -20,7 +21,6 @@ public class GestorTaulell {
         }
     }
     public void insertSick(int[][]table, int insertRow, int insertColumn){
-        Scanner s = new Scanner(System.in);
         table[insertRow-1][insertColumn-1] = s.nextInt();
     }
 }

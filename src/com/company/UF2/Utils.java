@@ -3,9 +3,7 @@ package com.company.UF2;
 import java.util.Scanner;
 
 public class Utils {
-
-    public static final String RESET = "\033[0m";
-    public static final String VERMELL = "\033[31m";
+    Scanner s = new Scanner(System.in);
 
     /**
      * Solicita un enter fins que sigui correcte
@@ -16,8 +14,7 @@ public class Utils {
      *                      introdueixi un número buid o incorrecte
      * @return Valor enter que simbolitza el número que s'ha introduït per teclat
      */
-    public static int validarEnter(String missatge, String missatgeError) {
-        Scanner s = new Scanner(System.in);
+    public int validarEnter(String missatge, String missatgeError) {
         int ret;
         boolean correcte;
         do {
@@ -33,8 +30,7 @@ public class Utils {
         return ret;
     }
 
-    public static int validateEnterLimits(String missatge, String missatgeError, int max,int min) {
-        Scanner s = new Scanner(System.in);
+    public int validateEnterLimits(String missatge, String missatgeError, int max,int min) {
         int ret;
         boolean correct;
         do {
@@ -48,7 +44,7 @@ public class Utils {
             } while (!correct);
             ret = s.nextInt();
             if (ret > max || ret <= min) {
-                System.out.println(VERMELL + "Error torna a intentar, el valor esta fora dels limits" + RESET);
+                Interficie.printErrorVermell("Error torna a intentar, el valor esta fora dels limits");
             }
         } while (ret > max || ret <= min);
         s.nextLine();
