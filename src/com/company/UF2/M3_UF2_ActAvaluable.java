@@ -33,9 +33,14 @@ public class M3_UF2_ActAvaluable {
             switch (option) {
                 case 1: //Creació del taulell
                     g.createTable(option);
+                    table = g.setSizeTable(row,column);
+                    //error prq el row i el colum como se definen dentro de una funcion se resetean
+                    /*
                     row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
                     column = u.validarEnter("Introdueix la quantitat de columnes: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
                     table = new int[row][column];
+
+                     */
                     g.carregarDades(table, row, column, option);
                     // fer les X (cellblocked).
                     tableCreate = true;

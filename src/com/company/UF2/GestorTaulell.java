@@ -6,11 +6,18 @@ import java.util.Scanner;
 
 public class GestorTaulell {
     Scanner s = new Scanner(System.in);
+    Utils u = new Utils();
+    Interficie i = new Interficie();
+
+    public int[][] setSizeTable(int row,int column){
+        row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
+        column = u.validarEnter("Introdueix la quantitat de columnes: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
+    return new int[row][column];
+    }
 
     public void createTable(int option){
-        Utils u = new Utils();
         do {
-            Interficie.mostrarOpcions(new String[]{"Taulell buit", "Taulell amb malalts"});
+            i.mostrarOpcions(new String[]{"Taulell buit", "Taulell amb malalts"});
             option = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les seguents opcions: "), Interficie.returnErrorVermell("Error en introduir l'opció"));
         } while (option != 1 && option != 2);
     }
