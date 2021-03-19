@@ -16,17 +16,7 @@ public class M3_UF2_ActAvaluable {
      * que aquesta opció sigui la de sortir.
      */
     public void start() {
-        String[] menu = {
-                "MENÚ                  ",
-                "1. Carregar Taulell   ",
-                "2. Introduir malalts  ",
-                "3. Transmitir Virus   ",
-                "4. Curar malats       ",
-                "5. Desplaçar malalts  ",
-                "6. Mostrar informació ",
-                "7. Configuració       ",
-                "0. Sortir             "
-        };
+
         GestorTaulell g = new GestorTaulell();
         Interficie i = new Interficie();
         Utils u = new Utils();
@@ -36,24 +26,19 @@ public class M3_UF2_ActAvaluable {
         int column = 0;
         int totalHealCompare = 0;
         int totalSick = 0;
-        String errorEnter = "Error en introduir l'opció";
         boolean tableCreate = false;
         do {
-            i.mostrarMenu(menu);
+            i.mostrarMenu();
             option = u.validarEnter(i.returnSentenceCyan("Introdueix un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
             switch (option) {
                 case 1: //Creació del taulell
-                    do {
-                        i.mostrarOpcions(["Taulell buit", "Taulell amb malalts"]);
-                        option = u.validarEnter(i.returnSentenceCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell(errorEnter));
-                    } while (option != 1 && option != 2);
-                    row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell(errorEnter));
-                    column = u.validarEnter("Introdueix la quantitat de columnes: ", i.returnErrorVermell(errorEnter));
+                    g.createTable(option);
+                    row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
+                    column = u.validarEnter("Introdueix la quantitat de columnes: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
                     table = new int[row][column];
                     g.carregarDades(table, row, column, option);
                     // fer les X (cellblocked).
                     tableCreate = true;
-                    int[][] taulell = crearTaulell([]);
                     break;
                 case 2: //Afegir Malalts
                     if (tableCreate){
@@ -81,12 +66,12 @@ public class M3_UF2_ActAvaluable {
                     int numericOrPercentage = 0;
                     if (tableCreate) {
                         do {
-                            i.mostrarOpcions("Curar tota la taula", "Curar posicio concreta");
-                            option = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
+                            i.mostrarOpcions(new String[]{"Curar tota la taula", "Curar posicio concreta"});
+                            option = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
                         } while (option != 1 && option != 2);
                         do {
-                            i.mostrarOpcions("Curar amb percentatge", "Curar amb valor numeric");
-                            numericOrPercentage = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
+                            i.mostrarOpcions(new String[]{"Curar amb percentatge", "Curar amb valor numeric"});
+                            numericOrPercentage = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
                         } while (numericOrPercentage != 1 && numericOrPercentage != 2);
 
                     } else {

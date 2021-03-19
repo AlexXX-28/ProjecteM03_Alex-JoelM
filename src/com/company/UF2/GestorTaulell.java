@@ -1,10 +1,19 @@
 package com.company.UF2;
 
+import jdk.jshell.execution.Util;
+
 import java.util.Scanner;
 
 public class GestorTaulell {
     Scanner s = new Scanner(System.in);
 
+    public void createTable(int option){
+        Utils u = new Utils();
+        do {
+            Interficie.mostrarOpcions(new String[]{"Taulell buit", "Taulell amb malalts"});
+            option = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les seguents opcions: "), Interficie.returnErrorVermell("Error en introduir l'opció"));
+        } while (option != 1 && option != 2);
+    }
     public void carregarDades(int[][] table, int row, int column, int option) {
         if (option == 1) {
             for (int i = 0; i < row; i++) {

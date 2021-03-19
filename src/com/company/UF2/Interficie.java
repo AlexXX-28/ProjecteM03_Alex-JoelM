@@ -13,7 +13,18 @@ public class Interficie {
     public static final String YELLOW = "\u001B[33m";
 
 
-    public static void mostrarMenu(String[] menu){
+    public static void mostrarMenu() {
+        String[] menu = {
+                "MENÚ                  ",
+                "1. Carregar Taulell   ",
+                "2. Introduir malalts  ",
+                "3. Transmitir Virus   ",
+                "4. Curar malats       ",
+                "5. Desplaçar malalts  ",
+                "6. Mostrar informació ",
+                "7. Configuració       ",
+                "0. Sortir             "
+        };
         printSentenceBlue("*************************\n");
         for (int i = 0; i < menu.length; i++) {
             printSentenceBlue("* ");
@@ -23,49 +34,53 @@ public class Interficie {
         printSentenceBlue("*************************\n");
     }
 
-    public static void mostrarOpcions(String[] missatges){
-        System.out.println(1+") " + missatge1);
-        System.out.println("2) " + missatge2);
+    public static void mostrarOpcions(String[] missatges) {
+        for (int i = 0; i < missatges.length; i++) {
+            System.out.println(i + 1 + ") " + missatges[i]);
+        }
     }
 
-    public int validateRepeat(String sentence){
+    public int validateRepeat(String sentence) {
         int opcio;
         do {
             System.out.println(sentence);
-            mostrarOpcions("Si", "No");
+            mostrarOpcions(new String[]{"Si", "No"});
             System.out.print("Opció: ");
             opcio = s.nextInt();
-        }while (opcio != 1 && opcio != 2);
+        } while (opcio != 1 && opcio != 2);
         return opcio;
     }
-    public static void showTable(int[][] array){
-        for (int i = 0; i < array.length ; i++) {
+
+    public static void showTable(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                System.out.printf("%-5s" ,array[i][j] + " ");
+                System.out.printf("%-5s", array[i][j] + " ");
             }
             System.out.println();
         }
     }
 
-    public static void printColoredWords(String colour, String frase){
-
-        System.out.print(getColorCode("BLUE") + sentence + RESET);
-    }
-    public static void printSentence(String sentence){
+    public static void printSentence(String sentence) {
         System.out.print(sentence);
     }
-    public static void printSentenceBlue(String sentence){
+
+    public static void printSentenceBlue(String sentence) {
         System.out.print(BLUE + sentence + RESET);
     }
-    public static String returnErrorVermell(String sentence){
+
+    public static String returnErrorVermell(String sentence) {
         return (VERMELL + sentence + RESET);
     }
-    public static void printErrorVermell(String sentence){
+
+    public static void printErrorVermell(String sentence) {
         System.out.print(VERMELL + sentence + RESET);
     }
-    public static String returnSentenceCyan(String sentence){
-        return (CYAN + sentence + RESET); }
-    public static void printSentenceCyan(String sentence){
+
+    public static String returnSentenceCyan(String sentence) {
+        return (CYAN + sentence + RESET);
+    }
+
+    public static void printSentenceCyan(String sentence) {
         System.out.print(CYAN + sentence + RESET);
     }
 }
