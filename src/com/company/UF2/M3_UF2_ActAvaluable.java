@@ -18,7 +18,7 @@ public class M3_UF2_ActAvaluable {
     public void start() {
         String[] menu = {
                 "MENÚ                  ",
-                "1. Carrega table      ",
+                "1. Carregar Taulell   ",
                 "2. Introduir malalts  ",
                 "3. Transmitir Virus   ",
                 "4. Curar malats       ",
@@ -40,15 +40,15 @@ public class M3_UF2_ActAvaluable {
         boolean tableCreate = false;
         do {
             i.mostrarMenu(menu);
-            option = u.validarEnter(i.printSentenceCyan("Introduiex un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
+            option = u.validarEnter(i.printSentenceCyan("Introdueix un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
             switch (option) {
                 case 1: //Creació del taulell
                     do {
                         i.mostrarOpcions("Taulell buit", "Taulell amb malalts");
                         option = u.validarEnter(i.printSentenceCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell(errorEnter));
                     } while (option != 1 && option != 2);
-                    row = u.validarEnter("Introduiex la quantitat de files: ", i.returnErrorVermell(errorEnter));
-                    column = u.validarEnter("Introduiex la quantitat de columnes: ", i.returnErrorVermell(errorEnter));
+                    row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell(errorEnter));
+                    column = u.validarEnter("Introdueix la quantitat de columnes: ", i.returnErrorVermell(errorEnter));
                     table = new int[row][column];
                     g.carregarDades(table, row, column, option);
                     // fer les X (cellblocked).
@@ -67,8 +67,8 @@ public class M3_UF2_ActAvaluable {
                     }
                     break;
                 case 3: //Transmissió del virus
-                    Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
                     if (tableCreate) {
+                        Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
                         g.transmitSick(table, row, column);
                     } else {
                         Interficie.printErrorVermell("El taulell no s'ha creat\n");
