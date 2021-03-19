@@ -55,19 +55,23 @@ public class M3_UF2_ActAvaluable {
                     tableCreate = true;
                     break;
                 case 2: //Afegir Malalts
-                    do {
-                        int insertRow = u.validateEnterLimits("Introduiex la fila: ", i.returnErrorVermell("Error en introduir la fila"), row, 0);
-                        int insertColumn = u.validateEnterLimits("Introduiex la columna: ", i.returnErrorVermell("Error en introduir la columna"), column, 0);
-                        i.printSentence("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
-                        g.insertSick(table, insertRow, insertColumn);
-                    } while (i.validateRepeat() == 1);
+                    if (tableCreate){
+                        do {
+                            int insertRow = u.validateEnterLimits("Introduiex la fila: ", i.returnErrorVermell("Error en introduir la fila"), row, 0);
+                            int insertColumn = u.validateEnterLimits("Introduiex la columna: ", i.returnErrorVermell("Error en introduir la columna"), column, 0);
+                            i.printSentence("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
+                            g.insertSick(table, insertRow, insertColumn);
+                        } while (i.validateRepeat() == 1);
+                    }else {
+                        Interficie.printErrorVermell("El taulell no s'ha creat\n");
+                    }
                     break;
                 case 3: //Transmissió del virus
                     Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
                     if (tableCreate) {
                         g.transmitSick(table, row, column);
                     } else {
-                        System.out.println("El taulell no s'ha creat");
+                        Interficie.printErrorVermell("El taulell no s'ha creat\n");
                     }
                     break;
                 case 4: //Curar malalts
@@ -85,9 +89,8 @@ public class M3_UF2_ActAvaluable {
                         } while (numericOrPercentage != 1 && numericOrPercentage != 2);
 
                     } else {
-                        Interficie.printErrorVermell("El taulell no s'ha creat"); // IDIOMA
+                        Interficie.printErrorVermell("El taulell no s'ha creat\n"); // IDIOMA
                     }
-                    System.out.println();
                     break;
                 case 5: //Desplaçar malalts
                     break;
