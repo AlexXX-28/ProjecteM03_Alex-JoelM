@@ -44,7 +44,7 @@ public class M3_UF2_ActAvaluable {
             switch (option) {
                 case 1: //Creació del taulell
                     do {
-                        i.mostrarOpcions("Taulell buit", "Taulell amb malalts");
+                        i.mostrarOpcions(["Taulell buit", "Taulell amb malalts"]);
                         option = u.validarEnter(i.returnSentenceCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell(errorEnter));
                     } while (option != 1 && option != 2);
                     row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell(errorEnter));
@@ -53,6 +53,7 @@ public class M3_UF2_ActAvaluable {
                     g.carregarDades(table, row, column, option);
                     // fer les X (cellblocked).
                     tableCreate = true;
+                    int[][] taulell = crearTaulell([]);
                     break;
                 case 2: //Afegir Malalts
                     if (tableCreate){

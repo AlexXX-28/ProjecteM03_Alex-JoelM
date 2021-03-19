@@ -23,8 +23,8 @@ public class Interficie {
         printSentenceBlue("*************************\n");
     }
 
-    public static void mostrarOpcions(String missatge1,String missatge2){
-        System.out.println("1) " + missatge1);
+    public static void mostrarOpcions(String[] missatges){
+        System.out.println(1+") " + missatge1);
         System.out.println("2) " + missatge2);
     }
 
@@ -45,6 +45,11 @@ public class Interficie {
             }
             System.out.println();
         }
+    }
+
+    public static void printColoredWords(String colour, String frase){
+
+        System.out.print(getColorCode("BLUE") + sentence + RESET);
     }
     public static void printSentence(String sentence){
         System.out.print(sentence);
