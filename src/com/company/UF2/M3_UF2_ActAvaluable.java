@@ -40,12 +40,12 @@ public class M3_UF2_ActAvaluable {
         boolean tableCreate = false;
         do {
             i.mostrarMenu(menu);
-            option = u.validarEnter(i.printSentenceCyan("Introdueix un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
+            option = u.validarEnter(i.returnSentenceCyan("Introdueix un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
             switch (option) {
                 case 1: //Creació del taulell
                     do {
                         i.mostrarOpcions("Taulell buit", "Taulell amb malalts");
-                        option = u.validarEnter(i.printSentenceCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell(errorEnter));
+                        option = u.validarEnter(i.returnSentenceCyan("Selecciona una de les seguents opcions: "), i.returnErrorVermell(errorEnter));
                     } while (option != 1 && option != 2);
                     row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell(errorEnter));
                     column = u.validarEnter("Introdueix la quantitat de columnes: ", i.returnErrorVermell(errorEnter));
@@ -81,11 +81,11 @@ public class M3_UF2_ActAvaluable {
                     if (tableCreate) {
                         do {
                             i.mostrarOpcions("Curar tota la taula", "Curar posicio concreta");
-                            option = u.validarEnter(Interficie.printSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
+                            option = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
                         } while (option != 1 && option != 2);
                         do {
                             i.mostrarOpcions("Curar amb percentatge", "Curar amb valor numeric");
-                            numericOrPercentage = u.validarEnter(Interficie.printSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
+                            numericOrPercentage = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell(errorEnter));
                         } while (numericOrPercentage != 1 && numericOrPercentage != 2);
 
                     } else {

@@ -52,15 +52,15 @@ public class Interficie {
     public static void printSentenceBlue(String sentence){
         System.out.print(BLUE + sentence + RESET);
     }
-
     public static String returnErrorVermell(String sentence){
         return (VERMELL + sentence + RESET);
     }
     public static void printErrorVermell(String sentence){
         System.out.print(VERMELL + sentence + RESET);
     }
-    public static String printSentenceCyan(String sentence){
-        return (CYAN + sentence + RESET);
+    public static String returnSentenceCyan(String sentence){
+        return (CYAN + sentence + RESET); }
+    public static void printSentenceCyan(String sentence){
+        System.out.print(CYAN + sentence + RESET);
     }
-    
 }
