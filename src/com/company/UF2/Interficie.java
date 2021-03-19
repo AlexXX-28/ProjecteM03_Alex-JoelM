@@ -28,10 +28,10 @@ public class Interficie {
         System.out.println("2) " + missatge2);
     }
 
-    public int validateRepeat(){
+    public int validateRepeat(String sentence){
         int opcio;
         do {
-            System.out.println("Vols continuar introduint malalts?");
+            System.out.println(sentence);
             mostrarOpcions("Si", "No");
             System.out.print("Opció: ");
             opcio = s.nextInt();

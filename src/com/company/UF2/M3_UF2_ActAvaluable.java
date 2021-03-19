@@ -34,8 +34,8 @@ public class M3_UF2_ActAvaluable {
         int option;
         int row = 0;
         int column = 0;
-        int totalHealCompare;
-        int totalSick;
+        int totalHealCompare = 0;
+        int totalSick = 0;
         String errorEnter = "Error en introduir l'opció";
         boolean tableCreate = false;
         do {
@@ -61,22 +61,22 @@ public class M3_UF2_ActAvaluable {
                             int insertColumn = u.validateEnterLimits("Introduiex la columna: ", i.returnErrorVermell("Error en introduir la columna"), column, 0);
                             i.printSentence("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
                             g.insertSick(table, insertRow, insertColumn);
-                        } while (i.validateRepeat() == 1);
+                        } while (i.validateRepeat("Vols continuar afegint malalts?") == 1);
                     }else {
                         Interficie.printErrorVermell("El taulell no s'ha creat\n");
                     }
                     break;
                 case 3: //Transmissió del virus
                     if (tableCreate) {
-                        Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
-                        g.transmitSick(table, row, column);
+                        do {
+                            Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
+                            g.transmitSick(table, row, column);
+                        } while (i.validateRepeat("Vols continuar transmitint virus?") == 1);
                     } else {
                         Interficie.printErrorVermell("El taulell no s'ha creat\n");
                     }
                     break;
                 case 4: //Curar malalts
-                    totalHealCompare = 0;
-                    totalSick = 0;
                     int numericOrPercentage = 0;
                     if (tableCreate) {
                         do {
