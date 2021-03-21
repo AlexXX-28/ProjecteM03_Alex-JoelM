@@ -19,6 +19,7 @@ public class Interficie {
                 "6. Mostrar informació \t",
                 "7. Configuració       \t",
                 "8. Seleccionar taulell\t",
+                "9. Buidar taulell     \t",
                 "0. Sortir             \t"
         };
         printSentenceBlue("*****************************\n");
