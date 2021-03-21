@@ -31,7 +31,7 @@ public class GestorTaulell {
         double rt = s.nextDouble();
         for (int i = 0; i < table.getRow(); i++) {
             for (int j = 0; j < table.getColumn(); j++) {
-                table.setCell(i, j, table.getCell(i, j) + (int) Math.floor(table.getCell(i, j) * rt)); // El calcul s'ha d'arrodonir cap a baix, ja que no poden haver ex: 1,5 persones malaltes per tant amb el Math.floor 1,5 = 1
+                table.addCell(i, j, (int) Math.floor(table.getCell(i, j) * rt)); // El calcul s'ha d'arrodonir cap a baix, ja que no poden haver ex: 1,5 persones malaltes per tant amb el Math.floor 1,5 = 1
             }
         }
     }
@@ -46,8 +46,8 @@ public class GestorTaulell {
                     for (int j = 0; j < table.getColumn(); j++) {
                         if (table.getCell(i, j) > 0) {
                             int curados = table.getCell(i, j) * percent / 100;
-                            table.setTotalHeal(curados);
-                            table.setCell(i, j, table.getCell(i, j) - curados);
+                            table.addTotalHeal(curados);
+                            table.addCell(i, j,-curados);
                         }
                     }
                 }
@@ -57,11 +57,11 @@ public class GestorTaulell {
                     for (int j = 0; j < table.getColumn(); j++) {
                         if (table.getCell(i, j) > 0) {
                             if (table.getCell(i, j) - valor < 0) {
-                                table.setTotalHeal(table.getCell(i, j));
+                                table.addTotalHeal(table.getCell(i, j));
                                 table.setCell(i, j, 0);
                             } else {
-                                table.setTotalHeal(valor);
-                                table.setCell(i, j, table.getCell(i, j) - valor);
+                                table.addTotalHeal(valor);
+                                table.addCell(i, j,-valor);
                             }
                         }
                     }
@@ -76,8 +76,8 @@ public class GestorTaulell {
                     int percent = Utils.validateEnterLimits("Introduiex el percentatge de 0-100 (sense %): ", 0, 100);
                 } else {
                     int valor = Utils.validateEnterLimits("Introdueix el numero de malalts per curar a la columna " + column + 1 + " de la fila " + row + 1 + ": ", 0, table.getCell(row, column));
-                    table.setCell(row, column, table.getCell(row, column) - valor);
-                    table.setTotalHeal(valor);
+                    table.addCell(row, column,-valor);
+                    table.addTotalHeal(valor);
                 }
             } else {
                 Interficie.printErrorVermell("Error cel·la bloquejada!!!\n");
@@ -141,13 +141,15 @@ public class GestorTaulell {
             }
             if (row + x > table.getRow() || row + x < 0 || column + y > table.getRow() || column + y > table.getRow()) {
                 Interficie.printErrorVermell("El desplaçament es fa fora dels limits.");
-                table.setCell(row, column, table.getCell(row, column) - sick);
+                table.addCell(row, column,-sick);
+                table.addTotalNoConf(sick);
             } else {
                 if (table.getCell(row + x, column + y) < 0) {
                     Interficie.printErrorVermell("No es possible el desplaçament, cel·la bloquejada");
                 } else {
-                    table.setCell(row, column, table.getCell(row, column) - sick);
-                    table.setCell(row + x, column + y, table.getCell(row + x, column + y) + sick);
+                    table.addCell(row, column,-sick);
+                    table.addCell(row + x, column + y,sick);
+                    table.addTotalNoConf(sick);
                 }
             }
 

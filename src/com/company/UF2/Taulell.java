@@ -7,12 +7,22 @@ public class Taulell {
     private int column;
     private int[][] table;
     private int totalHeal;
+    private int totalNoConf;
+    public static int TablesSize = 0;
+
+    public int getTotalNoConf(){
+        return totalNoConf;
+    }
+
+    public void addTotalNoConf(int totalNoConf){
+        this.totalNoConf += totalNoConf;
+    }
 
     public int getTotalHeal() {
         return totalHeal;
     }
 
-    public void setTotalHeal(int heal){
+    public void addTotalHeal(int heal){
         this.totalHeal += heal;
     }
 
@@ -38,6 +48,10 @@ public class Taulell {
 
     public void setCell(int i, int j, int value) {
         this.table[i][j] = value;
+    }
+
+    public void addCell(int i, int j, int value){
+        this.table[i][j] += value;
     }
 
     public void createTaulellRandom() {

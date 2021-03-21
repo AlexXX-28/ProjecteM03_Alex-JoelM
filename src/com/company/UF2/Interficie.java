@@ -8,25 +8,26 @@ public class Interficie {
     public static final String CYAN = "\u001B[36m";
     public static final String YELLOW = "\u001B[33m";
 
-    public static void showMenu() {
+    public static void showMenu(int tableActive) {
         String[] menu = {
-                "MENÚ                  ",
-                "1. Carregar Taulell   ",
-                "2. Introduir malalts  ",
-                "3. Transmitir Virus   ",
-                "4. Curar malats       ",
-                "5. Desplaçar malalts  ",
-                "6. Mostrar informació ",
-                "7. Configuració       ",
-                "0. Sortir             "
+                " MENÚ taulell -> "+tableActive+"/"+(Taulell.TablesSize)+"\t\t",
+                "1. Carregar Taulell   \t",
+                "2. Introduir malalts  \t",
+                "3. Transmitir Virus   \t",
+                "4. Curar malats       \t",
+                "5. Desplaçar malalts  \t",
+                "6. Mostrar informació \t",
+                "7. Configuració       \t",
+                "8. Seleccionar taulell\t",
+                "0. Sortir             \t"
         };
-        printSentenceBlue("*************************\n");
+        printSentenceBlue("*****************************\n");
         for (int i = 0; i < menu.length; i++) {
             printSentenceBlue("* ");
             System.out.print(menu[i]);
             printSentenceBlue("*\n");
         }
-        printSentenceBlue("*************************\n");
+        printSentenceBlue("*****************************\n");
     }
 
     public static void showOptions(String[] missatges) {
@@ -51,6 +52,7 @@ public class Interficie {
         }
         System.out.println("El total de malalts es : " + totalSick);
         System.out.println("El total de persones curades es : " + table.getTotalHeal());
+        System.out.println("El percentatge que no ha complit el confinament es :" + table.getTotalNoConf() / 100 * totalSick);
     }
 
     public static void showOptionMove() {

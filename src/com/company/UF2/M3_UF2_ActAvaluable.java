@@ -12,18 +12,22 @@ public class M3_UF2_ActAvaluable {
     public void inici() {
         int option;
         GestorTaulell g = new GestorTaulell();
-        Taulell table = new Taulell();
+        Taulell table = null;
         int numOptions = 1;
-
-        //Taulell[] table = new Taulell[3]; maximo de instancias de la clase, solo habra como maximo 3 tablas.
+        Taulell[] tables = new Taulell[100];
+        int optionTableMove = 0;
 
         do {
-            Interficie.showMenu();
+            Interficie.showMenu(optionTableMove);
             option = Utils.validateEnterLimits(Interficie.returnSentenceCyan("Introdueix un numero del 0 al " + numOptions + " per seleccionar l'opció: "), 0,numOptions);
             switch (option) {
                 case 1: { //Creació del taulell
-                     g.creatTable(table, g.selectOptionTable(new String[]{"Taulell buit", "Taulell amb malalts"}));
-                     numOptions = 7;
+                    tables[Taulell.TablesSize] = new Taulell();
+                    table = tables[Taulell.TablesSize];
+                    Taulell.TablesSize++;
+                    optionTableMove = Taulell.TablesSize;
+                    g.creatTable(table, g.selectOptionTable(new String[]{"Taulell buit", "Taulell amb malalts"}));
+                     numOptions = 8;
                     break;
                 }
                 case 2: { //Afegir Malalts
@@ -48,6 +52,11 @@ public class M3_UF2_ActAvaluable {
                 }
                 case 7: { // Configuració de la interfaz
                     //FALTA
+                    break;
+                }
+                case 8: {// Seleccionar el taulell de treball
+                    optionTableMove = Utils.validateEnterLimits("Selecciona el número de taulell: ",1,Taulell.TablesSize);
+                    table = tables[optionTableMove-1];
                     break;
                 }
                 case 0: { // sortir
