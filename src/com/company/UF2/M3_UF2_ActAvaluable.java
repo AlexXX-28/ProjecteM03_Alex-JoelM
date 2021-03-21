@@ -1,97 +1,59 @@
 
 package com.company.UF2;
 
-
 public class M3_UF2_ActAvaluable {
 
 
     public static void main(String[] args) {
         M3_UF2_ActAvaluable solucio = new M3_UF2_ActAvaluable();
-        solucio.start();
+        solucio.inici();
     }
 
-    /**
-     * Programa principal cridat des del main de la classe. Mostra el menú
-     * per pantalla i segons la opció triada executa una o altre instrucció fins
-     * que aquesta opció sigui la de sortir.
-     */
-    public void start() {
-
-        GestorTaulell g = new GestorTaulell();
-        Interficie i = new Interficie();
-        Utils u = new Utils();
-        int[][] table = new int[0][0];
+    public void inici() {
         int option;
-        int row = 0;
-        int column = 0;
-        int totalHealCompare = 0;
-        int totalSick = 0;
-        boolean tableCreate = false;
+        GestorTaulell g = new GestorTaulell();
+        Taulell table = new Taulell();
+        int numOptions = 1;
+
+        //Taulell[] table = new Taulell[3]; maximo de instancias de la clase, solo habra como maximo 3 tablas.
+
         do {
-            i.mostrarMenu();
-            option = u.validarEnter(i.returnSentenceCyan("Introdueix un numero del 1 al 7 per seleccionar l'opció: "), i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
+            Interficie.showMenu();
+            option = Utils.validateEnterLimits(Interficie.returnSentenceCyan("Introdueix un numero del 0 al " + numOptions + " per seleccionar l'opció: "), 0,numOptions);
             switch (option) {
-                case 1: //Creació del taulell
-                    g.createTable(option);
-                    table = g.setSizeTable(row,column);
-                    //error prq el row i el colum como se definen dentro de una funcion se resetean
-                    /*
-                    row = u.validarEnter("Introdueix la quantitat de files: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
-                    column = u.validarEnter("Introdueix la quantitat de columnes: ", i.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
-                    table = new int[row][column];
-
-                     */
-                    g.carregarDades(table, row, column, option);
-                    // fer les X (cellblocked).
-                    tableCreate = true;
+                case 1: { //Creació del taulell
+                     g.creatTable(table, g.selectOptionTable(new String[]{"Taulell buit", "Taulell amb malalts"}));
+                     numOptions = 7;
                     break;
-                case 2: //Afegir Malalts
-                    if (tableCreate){
-                        do {
-                            int insertRow = u.validateEnterLimits("Introduiex la fila: ", i.returnErrorVermell("Error en introduir la fila"), row, 0);
-                            int insertColumn = u.validateEnterLimits("Introduiex la columna: ", i.returnErrorVermell("Error en introduir la columna"), column, 0);
-                            i.printSentence("Introdueix el valor per a la columna " + insertColumn + " de la fila " + insertRow + ": ");
-                            g.insertSick(table, insertRow, insertColumn);
-                        } while (i.validateRepeat("Vols continuar afegint malalts?") == 1);
-                    }else {
-                        Interficie.printErrorVermell("El taulell no s'ha creat\n");
-                    }
+                }
+                case 2: { //Afegir Malalts
+                        g.insertSick(table);
                     break;
-                case 3: //Transmissió del virus
-                    if (tableCreate) {
-                        do {
-                            Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
-                            g.transmitSick(table, row, column);
-                        } while (i.validateRepeat("Vols continuar transmitint virus?") == 1);
-                    } else {
-                        Interficie.printErrorVermell("El taulell no s'ha creat\n");
-                    }
+                }
+                case 3: { //Transmissió del virus
+                        g.transmitSick(table);
                     break;
-                case 4: //Curar malalts
-                    int numericOrPercentage = 0;
-                    if (tableCreate) {
-                        do {
-                            i.mostrarOpcions(new String[]{"Curar tota la taula", "Curar posicio concreta"});
-                            option = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
-                        } while (option != 1 && option != 2);
-                        do {
-                            i.mostrarOpcions(new String[]{"Curar amb percentatge", "Curar amb valor numeric"});
-                            numericOrPercentage = u.validarEnter(Interficie.returnSentenceCyan("Selecciona una de les opcions anteriors: "), Interficie.returnErrorVermell("Error en introduir el valor desitjat, torna a intentar..."));
-                        } while (numericOrPercentage != 1 && numericOrPercentage != 2);
-
-                    } else {
-                        Interficie.printErrorVermell("El taulell no s'ha creat\n"); // IDIOMA
-                    }
+                }
+                case 4: { //Curar malalts
+                    g.healSick(table);
                     break;
-                case 5: //Desplaçar malalts
+                }
+                case 5: { //Desplaçar malalts
+                    g.moveSick(table);
                     break;
-                case 6: //Mostrar Taula
-                    i.showTable(table);
+                }
+                case 6: { //Mostrar Taula
+                    Interficie.showTable(table);
                     break;
-                case 7: // Configuració de la interfaz
+                }
+                case 7: { // Configuració de la interfaz
+                    //FALTA
                     break;
-                case 0: // sortir
+                }
+                case 0: { // sortir
+                    Interficie.printSentence("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
                     break;
+                }
             }
         } while (option != 0);
 
