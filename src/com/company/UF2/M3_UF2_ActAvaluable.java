@@ -50,17 +50,13 @@ public class M3_UF2_ActAvaluable {
                     Interficie.showTable(table);
                     break;
                 }
-                case 7: { // Configuració de la interfaz
-                    //FALTA
+                case 7: { // Buidar taulell
+                    table.emptyTaulell();
                     break;
                 }
                 case 8: { // Seleccionar el taulell de treball
                     optionTableMove = Utils.validateEnterLimits("Selecciona el número de taulell: ",1,Taulell.TablesSize);
                     table = tables[optionTableMove-1];
-                    break;
-                }
-                case 9: { // Buidar taulell
-                    table.emptyTaulell();
                     break;
                 }
                 case 0: { // sortir
