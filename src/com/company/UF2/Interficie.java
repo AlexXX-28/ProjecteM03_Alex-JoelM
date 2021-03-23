@@ -17,7 +17,7 @@ public class Interficie {
                 "4. Curar malats       \t",
                 "5. Desplaçar malalts  \t",
                 "6. Mostrar informació \t",
-                "7. Buidar taulell     \t",
+                "7. Configuració       \t",
                 "8. Seleccionar taulell\t",
                 "0. Sortir             \t"
         };

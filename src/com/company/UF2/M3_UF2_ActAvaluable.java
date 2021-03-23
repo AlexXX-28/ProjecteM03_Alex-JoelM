@@ -3,11 +3,16 @@ package com.company.UF2;
 
 public class M3_UF2_ActAvaluable {
 
-
     public static void main(String[] args) {
         M3_UF2_ActAvaluable solucio = new M3_UF2_ActAvaluable();
         solucio.inici();
     }
+
+    /**
+     * Programa principal cridat des del main de la classe. Mostra el menú
+     * per pantalla i segons la opció triada executa una o altre instrucció fins
+     * que aquesta opció sigui la de sortir.
+     */
 
     public void inici() {
         int option;
@@ -27,7 +32,7 @@ public class M3_UF2_ActAvaluable {
                     Taulell.TablesSize++;
                     optionTableMove = Taulell.TablesSize;
                     g.creatTable(table, g.selectOptionTable(new String[]{"Taulell buit", "Taulell amb malalts"}));
-                     numOptions = 9;
+                     numOptions = 8;
                     break;
                 }
                 case 2: { //Afegir Malalts
@@ -50,11 +55,11 @@ public class M3_UF2_ActAvaluable {
                     Interficie.showTable(table);
                     break;
                 }
-                case 7: { // Buidar taulell
-                    table.emptyTaulell();
+                case 7: { // Configuració de la interfaz
+                    //FALTA
                     break;
                 }
-                case 8: { // Seleccionar el taulell de treball
+                case 8: {// Seleccionar el taulell de treball
                     optionTableMove = Utils.validateEnterLimits("Selecciona el número de taulell: ",1,Taulell.TablesSize);
                     table = tables[optionTableMove-1];
                     break;
