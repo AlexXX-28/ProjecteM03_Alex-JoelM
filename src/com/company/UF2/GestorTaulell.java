@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class GestorTaulell {
     Scanner s = new Scanner(System.in);
 
+
     public void creatTable(Taulell table, int option) {
         int row = Utils.validateEnterLimits("Introdueix la quantitat de files: ", 1, 0);
         int column = Utils.validateEnterLimits("Introdueix la quantitat de columnes: ", 1, 0);
