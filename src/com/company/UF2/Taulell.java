@@ -3,9 +3,9 @@ package com.company.UF2;
 import java.util.Random;
 
 /**
- * La clase Taulell serveix per a la creació de varios taulell.
- * @author Joel maria Montes
- * @author Alex Sàez
+ * La clase Taulell serveix per a la creació de diversos taulell.
+ * @author Joel Maria Montes
+ * @author Àlex Sàez
  */
 public class Taulell {
     private int row;
@@ -16,7 +16,7 @@ public class Taulell {
     public static int TablesSize = 0;
 
     /**
-     * Te com objectiu returna el total NO confinat
+     * Te com objectiu retornar el total NO confinat
      * @return Retornara el total NO confinat
      */
     public int getTotalNoConf(){
@@ -32,7 +32,7 @@ public class Taulell {
     }
 
     /**
-     * Te com objectiu returna el total de curats
+     * Te com objectiu retornar el total de curats
      * @return Retornara el total de curats
      */
     public int getTotalHeal() {
@@ -47,7 +47,7 @@ public class Taulell {
         this.totalHeal += heal;
     }
     /**
-     * Te com objectiu returna el total de files del taulell
+     * Te com objectiu retornar el total de files del taulell
      * @return Retorna la quantitat de files que tens en el teu taulell
      */
     public int getRow() {
@@ -55,13 +55,13 @@ public class Taulell {
     }
     /**
      * Te com objectiu introduir les files que tindra el taulell
-     * @param files Varible que s'utilitza per insertar les files que tindra el taulell
+     * @param files Variable que s'utilitza per insertar les files que tindra el taulell
      */
     public void setRow(int files) {
         this.row = files;
     }
     /**
-     * Te com objectiu returna el total de columnes del taulell
+     * Te com objectiu retornar el total de columnes del taulell
      * @return Retorna la quantitat de columnes que tens en el teu taulell
      */
     public int getColumn() {
@@ -98,13 +98,13 @@ public class Taulell {
      * Te com objectiu afegir el valor a la cel·la a partir d'introduir la posició de la fila i la columna
      * @param i Serveix com index de les files
      * @param j Serveix com index de les columnes
-     * @param value El valor que s'afageix en la cel·la
+     * @param value El valor que s'afegeix en la cel·la
      */
     public void addCell(int i, int j, int value){
         this.table[i][j] += value;
     }
     /**
-     * Afageix a la taula creada numeros randoms a les cel·les a partir del rnag -3 fins a 10 (tots dos inclos)
+     * Afegeix a la taula creada numeros randoms a les cel·les a partir del rnag -3 fins a 10 (tots dos inclos)
      */
     public void createTaulellRandom() {
         this.table = new int[row][column];
@@ -117,7 +117,7 @@ public class Taulell {
         }
     }
     /**
-     * Afageix a totes les cel·les creades un valor de 0
+     * Afegeix a totes les cel·les creades un valor de 0
      */
     public void createTaulellBuit() {
         this.table = new int[row][column];

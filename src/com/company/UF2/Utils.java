@@ -2,8 +2,22 @@ package com.company.UF2;
 
 import java.util.Scanner;
 
+/**
+ * La classe Utils serveix per a la validació
+ * @author Àlex Sàez
+ * @author Joel Maria Montes
+ */
+
 public class Utils {
 
+    /**
+     * Ens permet validar si l'entrada es un tipus "int" i també si aquest esta dins dels rangs
+     * tot i que també podem no tenir en compte els rangs
+     * @param sentences Es la variable que ens permet mostrar un missatge
+     * @param min Es el rang minim
+     * @param max Es el rang maxim
+     * @return Retorna el enter que previament s'ha posat si ha pasat la validació
+     */
     public static int validateEnterLimits(String sentences,int min,int max) {
         Scanner s = new Scanner(System.in);
         int ret;
@@ -30,6 +44,13 @@ public class Utils {
         s.nextLine();
         return ret;
     }
+
+    /**
+     * Ens permet validar si es una String, i si aquesta esta dins del rang
+     * @param sentences Es la variable que ens permet mostrar un missatge
+     * @param rang Ens indica el rang que no ha de passar la String
+     * @return Retorna la String que previament s'ha posat si ha passat la validació
+     */
     public static String validateStringRange(String sentences, String[] rang){
         Scanner s = new Scanner(System.in);
         String sentenceRange;

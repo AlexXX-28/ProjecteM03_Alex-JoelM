@@ -3,10 +3,20 @@ package com.company.UF2;
 
 import java.util.Scanner;
 
+/**
+ * La classe GestorTaulell serveix per a "gestionar el taulell", tant crear taules com afegir malalts etc
+ * @author Àlex Sàez
+ * @author Joel Maria Montes
+ */
+
 public class GestorTaulell {
     Scanner s = new Scanner(System.in);
 
-
+    /**
+     * Ens permet crear un Taulell: Buit o Aleatori
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     * @param option Es la variable que ens permet saber quina opció s'ha seleccionat
+     */
     public void creatTable(Taulell table, int option) {
         int row = Utils.validateEnterLimits("Introdueix la quantitat de files: ", 1, 0);
         int column = Utils.validateEnterLimits("Introdueix la quantitat de columnes: ", 1, 0);
@@ -19,6 +29,10 @@ public class GestorTaulell {
         }
     }
 
+    /**
+     * Ens permet introduir malalts en el taulell que tenim seleccionat
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     */
     public void insertSick(Taulell table) {
         int row = Utils.validateEnterLimits("Introdueix la  fila: ", 1, table.getRow());
         int column = Utils.validateEnterLimits("Introdueix la columna: ", 1, table.getColumn());
@@ -27,6 +41,10 @@ public class GestorTaulell {
         table.setCell(row - 1, column - 1, valor);
     }
 
+    /**
+     * Ens permet transmetre el virus mitjançant una taxa de transmissió
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     */
     public void transmitSick(Taulell table) {
         Interficie.printSentenceCyan("Introdueix la taxa de transmissió del virus: ");
         double rt = s.nextDouble();
@@ -37,6 +55,11 @@ public class GestorTaulell {
         }
     }
 
+    /**
+     * Ens permet curar malalts amb diferents opcions: "A tota la taula" o "Una posicio concreta"
+     * i "Amb Percentatge" o "Amb Valor Numéric"
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     */
     public void healSick(Taulell table) {
         int option = selectOptionTable(new String[]{"Curar tota la taula", "Curar posició concreta"});
         int numericOrPercent = selectOptionTable(new String[]{"Curar amb percentatge", "Curar amb valor numeric"});
@@ -87,6 +110,10 @@ public class GestorTaulell {
         }
     }
 
+    /**
+     * Ens permet moure als malalts a les cel·les del voltant, sempre que no sigui una cel·la bloquejada
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     */
     public void moveSick(Taulell table) {
         int x = 0;
         int y = 0;
@@ -158,6 +185,11 @@ public class GestorTaulell {
 
     }
 
+    /**
+     * Ens permet escollir entre diferents opcions
+     * @param sentences Es la frase que es mostra per a escollir entre les diferents opcions
+     * @return Retorna la opcio escollida
+     */
     public int selectOptionTable(String[] sentences) {
         int option;
         Interficie.showOptions(sentences);
