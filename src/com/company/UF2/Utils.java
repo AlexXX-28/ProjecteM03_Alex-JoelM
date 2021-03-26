@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * La classe Utils serveix per a la validació
- * @author Àlex Sàez
+ * @author Alex Saez
  * @author Joel Maria Montes
  */
 

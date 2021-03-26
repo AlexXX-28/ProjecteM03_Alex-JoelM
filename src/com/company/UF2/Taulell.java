@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * La clase Taulell serveix per a la creació de diversos taulell.
  * @author Joel Maria Montes
- * @author Àlex Sàez
+ * @author Alex Saez
  */
 public class Taulell {
     private int row;

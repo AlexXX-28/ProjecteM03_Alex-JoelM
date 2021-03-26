@@ -2,7 +2,7 @@ package com.company.UF2;
 
 /**
  * La classe Interficie serveix per a mostrar informació per pantalla/consola
- * @author Àlex Sàez
+ * @author Alex Saez
  * @author Joel Maria Montes
  */
 public class Interficie {

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * La classe GestorTaulell serveix per a "gestionar el taulell", tant crear taules com afegir malalts etc
- * @author Àlex Sàez
+ * @author Alex Saez
  * @author Joel Maria Montes
  */
 
