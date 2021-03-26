@@ -1,5 +1,11 @@
-# Projecte UF1 - Alex & Joel M
+# Projecte UF1-UF2 - Alex S & Joel M
 
+## Presentació del projecte 
+El tema principal del projecte es la pandemia del "Coronavirus"
+El projecte tracta de crear un taulell on el puguem gestionar per a fer estadistiques i càlculs dels infectats amb "Coronavirus", es a dir tant el total de malalts, com  el de persones curades entre altres.
+Els diferents apartats del programa els veureu a continuació juntament amb els extres que hem afegit personalment.
+
+# UF1
 ## Esquema principal del projecte
 ### Petit Resum
 El nostre projecte comença amb un menu, creat amb un switch, que mostra les diferents opcions que tenim, son 7 cases, ja que l'ultim serveix per "Sortir".
@@ -147,3 +153,24 @@ També vam pensar que no tenia sentit poder seleccionar opcions del menú que ed
 Bàsicament si no has creat el taulell i intentes per exemple "Curar malalts" et sortira un missatge d'error dient-te "El taullel no s'ha creat".
 
 Un altre problema que ens resultaba molest, era que si t'equivoques en algun apartat que et demana alguna dada i tu has posat per exemple, més de lo posible, o simplement alguna dada erronea, doncs em fet que ho detecti i que surti un missatge d'error descriptiu, i que et permeti torna a introduir la dada.
+
+# UF2
+## Distribució del programa en Funcions
+En aquesta UF2 hem reprogramat tot el programa previ per a optimitzar-lo i en definitiva fer-ho més correcte, al tenir-ho dividit en funcions.
+Tenim el fitxer principal que crida a totes les funcions, i després tenim les funcions dividides entre 4 classes que segons el tipus de funció estarà en un d'aquests fitxers:
+   - GestorTaulell
+   - Interficie
+   - Utils
+   - Taulell
+
+### GestorTaulell
+En la classe "GestorTaulell" tenim definides les funcions que ens permeten modificar el taulell, tant crear-ne un, com buidar-lo, com afegir malalts o curar-los...
+
+### Interficie
+En la classe "Interficie" tenim definides les funcions que es mostren per pantalla, com simples frases, amb o sense color, diferents opcions del menú entre altres.
+
+### Utils
+En la classe "Utils" tenim definides les funcions de validació, per exemple que validem si el numero que s'entra es un "Int" i també si esta dins d'un rang
+
+### Taulell
+En la classe "Taulell" tenim definides les funcions que ens permeten disposar del taulell, i de més taulells ja que ho explicarem en les millores de prova pero hem fet que es puguin tenir més d'un taullel.
