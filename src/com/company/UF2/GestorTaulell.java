@@ -30,6 +30,17 @@ public class GestorTaulell {
     }
 
     /**
+     * Ens permet buidar el taulell
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     */
+    public void buidarTaulell(Taulell table) {
+        for (int i = 0; i <table.getRow() ; i++) {
+            for (int j = 0; j < table.getColumn(); j++) {
+                table.addCell(i,j,0);
+            }
+        }
+    }
+    /**
      * Ens permet introduir malalts en el taulell que tenim seleccionat
      * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
      */

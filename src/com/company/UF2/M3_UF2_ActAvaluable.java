@@ -32,7 +32,7 @@ public class M3_UF2_ActAvaluable {
                     Taulell.TablesSize++;
                     optionTableMove = Taulell.TablesSize;
                     g.creatTable(table, g.selectOptionTable(new String[]{"Taulell buit", "Taulell amb malalts"}));
-                     numOptions = 7;
+                     numOptions = 8;
                     break;
                 }
                 case 2: { //Afegir Malalts
@@ -62,6 +62,7 @@ public class M3_UF2_ActAvaluable {
                 }
                 case 8: { // Buidar Taulell
 
+                    g.buidarTaulell(table);
                 }
                 case 0: { // sortir
                     Interficie.printSentence("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
