@@ -9,15 +9,15 @@ Els diferents apartats del programa els veureu a continuació juntament amb els 
 ## Esquema principal del projecte
 ### Petit Resum
 El nostre programa demana una opció del menu següent:
-- 1. Carregar Taulell
-- 2. Introduir malalts
-- 3. Transmitir Virus
-- 4. Curar malats
-- 5. Desplaçar malalts
-- 6. Mostrar informació
-- 7. Configuració
-- 8. Seleccionar taulell
-- 0. Sortir
+- Carregar Taulell
+- Introduir malalts
+- Transmitir Virus
+- Curar malats
+- Desplaçar malalts
+- Mostrar informació
+- Configuració
+- Seleccionar taulell
+- Sortir
 ### Explicació detallada
 1. Impressió del menu que es va repetin fins que el bucle trobi el resultat del menu, del cual seria "si no es igual a 7 (case 7 = sortir) continua imprimin fins que retorni un 7 del qual el programa acabaria.
 2. Un if per saber si el resultat (s.nextInt) del menu si es correcte...
