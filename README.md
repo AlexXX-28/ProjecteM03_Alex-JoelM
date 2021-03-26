@@ -190,6 +190,7 @@ Tenim opcions de testeig que ens validen que les frases que printem amb un color
 
 ## Javadoc
 
+link: [JavaDoc](src/com/company/UF2/Docs/index.html)
 ## Propostes de millora
 Tot i que nomes es requeria una proposta de millora, hi havien força coses que ens molestaven o no acababen d'agradar-nos.
 
