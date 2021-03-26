@@ -8,11 +8,16 @@ Els diferents apartats del programa els veureu a continuació juntament amb els 
 # UF1
 ## Esquema principal del projecte
 ### Petit Resum
-El nostre projecte comença amb un menu, creat amb un switch, que mostra les diferents opcions que tenim, son 7 cases, ja que l'ultim serveix per "Sortir".
-A continuació tenim en cada case del switch, que s'entra segons l'opció que escollim (1-7).
-Despres simplement tenim un codi diferent per al que es demana en les diferents opcions.
-Però gairebé tot el codi esta format per "for" que fa que ens puguem moure per els arrays, i poder modificar les dades que es demanen.
-Una vegada s'acaba el case que em seleccionat ens demana si volem tornar a utilitzar aquella opció, si diem que si es tornara a executar el mateix codi, pero si diem que no, ens mostrara el menu per a que escollim una nova opció. Això acabarà si escollim l'ultima opció que es la 7 "Sortir".
+El nostre programa demana una opció del menu següent:
+- 1. Carregar Taulell
+- 2. Introduir malalts
+- 3. Transmitir Virus
+- 4. Curar malats
+- 5. Desplaçar malalts
+- 6. Mostrar informació
+- 7. Configuració
+- 8. Seleccionar taulell
+- 0. Sortir
 ### Explicació detallada
 1. Impressió del menu que es va repetin fins que el bucle trobi el resultat del menu, del cual seria "si no es igual a 7 (case 7 = sortir) continua imprimin fins que retorni un 7 del qual el programa acabaria.
 2. Un if per saber si el resultat (s.nextInt) del menu si es correcte...
@@ -141,19 +146,6 @@ El requadre groc es la posició actual, el cercle es a on s'hauria de desplaçar
 -En l'apartat de "Desplaçar Malalts" haviem de guardar quants malalts anaven desplaçant-se en una variable per a mostrar-ho en una altre opció, per tant la variable guarda el numero de malalts que es volien desplaçar en el mateix moment que es demanava, pero si a continuació es veia que la cel·la era una bloquejada o que no es podia perquè donava error per alguna altre cosa ja s'havia sumat a aquella variable tot i que finalment no s'havia desplaçat.
 ![L'error es va solucionar restant el que haviem sumat previament en el cas que hi hagues l'error](/Images/Captura2.PNG)
 
-## Propostes de millora
-Tot i que nomes es requeria una proposta de millora, hi havien força coses que ens molestaven o no acababen d'agradar-nos.
-
-Per exemple que alhora de printar en la consola tant menu, com errors, com diferents opcions, quedava tot amb el mateix color i feia que la lectura fos ilegible, i per tant vam decidir que podiem afegir colors per a que tot es diferencies i es pogues llegir d'una manera correcta.
-Vam canviar el menu per a que tingues uns contorns amb "asteriscs" de color blau, els errors els vam printar de color vermell, a l'igual que les "X".
-
-De la següent cosa que ens vam adonar va ser que era poc optim haver de sortir-se de les opcions del menú cada vegada que feies 1 canvi, per tant vam donar la opció que despres d'utilitzar cada opció del menu sortis un missatge que et preguntes si volies seguir utilitzant aquella opció.
-
-També vam pensar que no tenia sentit poder seleccionar opcions del menú que editaven el taulell, sense haver creat un previament, per tant vam haver de fer un validador que s'actives quan es feia la 1a opció "Carregar taulell".
-Bàsicament si no has creat el taulell i intentes per exemple "Curar malalts" et sortira un missatge d'error dient-te "El taullel no s'ha creat".
-
-Un altre problema que ens resultaba molest, era que si t'equivoques en algun apartat que et demana alguna dada i tu has posat per exemple, més de lo posible, o simplement alguna dada erronea, doncs em fet que ho detecti i que surti un missatge d'error descriptiu, i que et permeti torna a introduir la dada.
-
 # UF2
 ## Distribució del programa en Funcions
 En aquesta UF2 hem reprogramat tot el programa previ per a optimitzar-lo i en definitiva fer-ho més correcte, al tenir-ho dividit en funcions.
@@ -174,3 +166,30 @@ En la classe "Utils" tenim definides les funcions de validació, per exemple que
 
 ### Taulell
 En la classe "Taulell" tenim definides les funcions que ens permeten disposar del taulell, i de més taulells ja que ho explicarem en les millores de prova pero hem fet que es puguin tenir més d'un taullel.
+
+## Joc de Proves
+![Si necessitem un enter semmpre validem que ho sigui i que estigui dins d'un rang](/Images/UF2/Captura.PNG)
+![Alhora de desplaçar malalts comprovem que no sigui una cel·la bloquejada](/Images/UF2/Captura2.PNG)
+![Alhora de desplaçar malalts comprovem que no es desplaçin a una cel·la bloquejada](/Images/UF2/Captura3.PNG)
+![Alhora de desplaçar malalts si surten dels limits de la taula mostrem un missatge que ho indica](/Images/UF2/Captura4.PNG)
+![Alhora de desplaçar malalts quan indiquem cap a on validem que sigui de tipus "String"](/Images/UF2/Captura5.PNG)
+![Tenim opcions de testeig que ens validen que les frases que printem amb un color es facin correctament:](/Images/UF2/Captura6.PNG)
+
+
+
+## Javadoc
+
+## Propostes de millora
+Tot i que nomes es requeria una proposta de millora, hi havien força coses que ens molestaven o no acababen d'agradar-nos.
+
+Per exemple que alhora de printar en la consola tant menu, com errors, com diferents opcions, quedava tot amb el mateix color i feia que la lectura fos ilegible, i per tant vam decidir que podiem afegir colors per a que tot es diferencies i es pogues llegir d'una manera correcta.
+Vam canviar el menu per a que tingues uns contorns amb "asteriscs" de color blau, els errors els vam printar de color vermell, a l'igual que les "X".
+
+De la següent cosa que ens vam adonar va ser que era poc optim haver de sortir-se de les opcions del menú cada vegada que feies 1 canvi, per tant vam donar la opció que despres d'utilitzar cada opció del menu sortis un missatge que et preguntes si volies seguir utilitzant aquella opció.
+
+També vam pensar que no tenia sentit poder seleccionar opcions del menú que editaven el taulell, sense haver creat un previament, per tant vam haver de fer un validador que s'actives quan es feia la 1a opció "Carregar taulell".
+Bàsicament si no has creat el taulell i intentes per exemple "Curar malalts" et sortira un missatge d'error dient-te "El taullel no s'ha creat".
+
+Un altre problema que ens resultaba molest, era que si t'equivoques en algun apartat que et demana alguna dada i tu has posat per exemple, més de lo posible, o simplement alguna dada erronea, doncs em fet que ho detecti i que surti un missatge d'error descriptiu, i que et permeti tornar a introduir la dada. Tot això mitjançant una funció que ens valida si el numero es "Int" i si esta dins d'un rang.
+
+Ens va semblar que tenir un unic taulell era una mica ineficient i ens quedavem curts, així doncs vam fer que es puguin crear més d'un taulell i per tant seleccionar quin es el que vols, i també vam afegir una opció per a poder buidar el taulell seleccionat.
