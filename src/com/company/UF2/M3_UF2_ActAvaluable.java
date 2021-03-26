@@ -32,7 +32,7 @@ public class M3_UF2_ActAvaluable {
                     Taulell.TablesSize++;
                     optionTableMove = Taulell.TablesSize;
                     g.creatTable(table, g.selectOptionTable(new String[]{"Taulell buit", "Taulell amb malalts"}));
-                     numOptions = 8;
+                     numOptions = 7;
                     break;
                 }
                 case 2: { //Afegir Malalts
@@ -55,11 +55,7 @@ public class M3_UF2_ActAvaluable {
                     Interficie.showTable(table);
                     break;
                 }
-                case 7: { // Configuració de la interfaz
-                    //FALTA
-                    break;
-                }
-                case 8: {// Seleccionar el taulell de treball
+                case 7: {// Seleccionar el taulell de treball
                     optionTableMove = Utils.validateEnterLimits("Selecciona el número de taulell: ",1,Taulell.TablesSize);
                     table = tables[optionTableMove-1];
                     break;

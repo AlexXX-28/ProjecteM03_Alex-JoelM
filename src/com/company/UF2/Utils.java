@@ -24,7 +24,7 @@ public class Utils {
         boolean correct;
         do {
             do {
-                System.out.print(sentences);
+                Interficie.printSentence(sentences);
                 correct = s.hasNextInt();
                 if (!correct) {
                     s.next();
@@ -58,7 +58,7 @@ public class Utils {
         boolean correctRang = false;
         do {
             do {
-                System.out.print(sentences);
+                Interficie.printSentence(sentences);
                 correct = s.hasNextInt();
                 if (correct) {
                     s.next();

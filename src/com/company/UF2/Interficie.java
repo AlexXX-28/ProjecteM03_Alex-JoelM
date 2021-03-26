@@ -13,7 +13,6 @@ public class Interficie {
     public static final String VERMELL = "\033[31m";
     public static final String BLUE = "\u001B[34m";
     public static final String CYAN = "\u001B[36m";
-    public static final String YELLOW = "\u001B[33m";
 
     /**
      * Ens permet mostrar el menú amb les diferents opcions
@@ -28,8 +27,7 @@ public class Interficie {
                 "4. Curar malats       \t",
                 "5. Desplaçar malalts  \t",
                 "6. Mostrar informació \t",
-                "7. Configuració       \t",
-                "8. Seleccionar taulell\t",
+                "7. Seleccionar taulell\t",
                 "0. Sortir             \t"
         };
         printSentenceBlue("*****************************\n");

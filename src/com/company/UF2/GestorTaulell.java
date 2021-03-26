@@ -167,7 +167,7 @@ public class GestorTaulell {
                     break;
                 }
             }
-            if (row + x > table.getRow() || row + x < 0 || column + y < 0  || column + y > table.getColumn()) { //mirar
+            if (row + x >= table.getRow() || row + x < 0 || column + y < 0  || column + y >= table.getColumn()) { //mirar
                 Interficie.printErrorVermell("El desplaçament es fa fora dels limits.\n");
                 table.addCell(row, column,-sick);
                 table.addTotalNoConf(sick);
