@@ -168,11 +168,22 @@ En la classe "Utils" tenim definides les funcions de validació, per exemple que
 En la classe "Taulell" tenim definides les funcions que ens permeten disposar del taulell, i de més taulells ja que ho explicarem en les millores de prova pero hem fet que es puguin tenir més d'un taullel.
 
 ## Joc de Proves
+Si necessitem un enter semmpre validem que ho sigui i que estigui dins d'un rang
 ![Si necessitem un enter semmpre validem que ho sigui i que estigui dins d'un rang](/Images/UF2/Captura.PNG)
+
+Alhora de desplaçar malalts comprovem que no sigui una cel·la bloquejada
 ![Alhora de desplaçar malalts comprovem que no sigui una cel·la bloquejada](/Images/UF2/Captura2.PNG)
+
+Alhora de desplaçar malalts comprovem que no es desplaçin a una cel·la bloquejada
 ![Alhora de desplaçar malalts comprovem que no es desplaçin a una cel·la bloquejada](/Images/UF2/Captura3.PNG)
+
+Alhora de desplaçar malalts si surten dels limits de la taula mostrem un missatge que ho indica
 ![Alhora de desplaçar malalts si surten dels limits de la taula mostrem un missatge que ho indica](/Images/UF2/Captura4.PNG)
+
+Alhora de desplaçar malalts quan indiquem cap a on validem que sigui de tipus "String"
 ![Alhora de desplaçar malalts quan indiquem cap a on validem que sigui de tipus "String"](/Images/UF2/Captura5.PNG)
+
+Tenim opcions de testeig que ens validen que les frases que printem amb un color es facin correctament:
 ![Tenim opcions de testeig que ens validen que les frases que printem amb un color es facin correctament:](/Images/UF2/Captura6.PNG)
 
 
