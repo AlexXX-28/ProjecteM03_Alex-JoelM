@@ -55,10 +55,13 @@ public class M3_UF2_ActAvaluable {
                     Interficie.showTable(table);
                     break;
                 }
-                case 7: {// Seleccionar el taulell de treball
+                case 7: { // Seleccionar el taulell de treball
                     optionTableMove = Utils.validateEnterLimits("Selecciona el número de taulell: ",1,Taulell.TablesSize);
                     table = tables[optionTableMove-1];
                     break;
+                }
+                case 8: { // Buidar Taulell
+
                 }
                 case 0: { // sortir
                     Interficie.printSentence("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga
