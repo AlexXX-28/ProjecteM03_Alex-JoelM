@@ -120,7 +120,7 @@ public class GestorTaulell {
         int row = Utils.validateEnterLimits("Introdueix la fila: ", 1, table.getRow()) - 1;
         int column = Utils.validateEnterLimits("Introdueix la columna: ", 1, table.getColumn()) - 1;
         if (table.getCell(row, column) < 0) {
-            Interficie.printErrorVermell("Error cel·la bloquejada.");
+            Interficie.printErrorVermell("Error cel·la bloquejada.\n");
         } else {
             Interficie.showOptionMove();
             String option = Utils.validateStringRange("Introdueix el valor: ", new String[]{"q", "w", "e", "a", "d", "z", "x", "c"});
@@ -167,13 +167,13 @@ public class GestorTaulell {
                     break;
                 }
             }
-            if (row + x > table.getRow() || row + x < 0 || column + y > table.getRow() || column + y > table.getRow()) {
-                Interficie.printErrorVermell("El desplaçament es fa fora dels limits.");
+            if (row + x > table.getRow() || row + x < 0 || column + y < 0  || column + y > table.getColumn()) { //mirar
+                Interficie.printErrorVermell("El desplaçament es fa fora dels limits.\n");
                 table.addCell(row, column,-sick);
                 table.addTotalNoConf(sick);
             } else {
                 if (table.getCell(row + x, column + y) < 0) {
-                    Interficie.printErrorVermell("No es possible el desplaçament, cel·la bloquejada");
+                    Interficie.printErrorVermell("No es possible el desplaçament, cel·la bloquejada\n");
                 } else {
                     table.addCell(row, column,-sick);
                     table.addCell(row + x, column + y,sick);

@@ -71,7 +71,7 @@ public class Interficie {
         }
         System.out.println("El total de malalts es : " + totalSick);
         System.out.println("El total de persones curades es : " + table.getTotalHeal());
-        System.out.println("El percentatge que no ha complit el confinament es :" + table.getTotalNoConf() / 100 * totalSick);
+        System.out.println("El percentatge que no ha complit el confinament es : " + table.getTotalNoConf() / 100 * totalSick);
     }
 
     /**
