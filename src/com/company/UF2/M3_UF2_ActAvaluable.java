@@ -61,8 +61,8 @@ public class M3_UF2_ActAvaluable {
                     break;
                 }
                 case 8: { // Buidar Taulell
-
                     g.buidarTaulell(table);
+                    break;
                 }
                 case 0: { // sortir
                     Interficie.printSentence("Fins despres \033[33m\uD83D\uDE04"); //Fins despres amb cara de feliçitat groga

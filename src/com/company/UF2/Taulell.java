@@ -104,7 +104,7 @@ public class Taulell {
         this.table[i][j] += value;
     }
     /**
-     * Afegeix a la taula creada numeros randoms a les cel·les a partir del rnag -3 fins a 10 (tots dos inclos)
+     * Afegeix a la taula creada numeros randoms a les cel·les a partir del rang -3 fins a 10 (tots dos inclos)
      */
     public void createTaulellRandom() {
         this.table = new int[row][column];
