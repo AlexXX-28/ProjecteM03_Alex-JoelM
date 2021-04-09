@@ -34,9 +34,9 @@ public class GestorTaulell {
      * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
      */
     public void buidarTaulell(Taulell table) {
-        for (int i = 0; i <table.getRow() ; i++) {
+        for (int i = 0; i < table.getRow() ; i++) {
             for (int j = 0; j < table.getColumn(); j++) {
-                table.addCell(i,j,0);
+                table.setCell(i,j,0);
             }
         }
     }

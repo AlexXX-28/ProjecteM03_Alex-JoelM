@@ -28,6 +28,7 @@ public class Interficie {
                 "5. Desplaçar malalts  \t",
                 "6. Mostrar informació \t",
                 "7. Seleccionar taulell\t",
+                "8. Buidar taulell     \t",
                 "0. Sortir             \t"
         };
         printSentenceBlue("*****************************\n");
