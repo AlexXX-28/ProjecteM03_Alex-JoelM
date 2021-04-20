@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
@@ -233,17 +237,21 @@ public class GestorTaulell {
         r.close();
     }
 
-    public void queries() {
+    public void queries() throws IOException {
+        Calendar fecha = new GregorianCalendar();
+        int year = fecha.get(Calendar.YEAR);
+        int month = fecha.get(Calendar.MONTH)+1;
+        int day = fecha.get(Calendar.DAY_OF_MONTH);
         switch (selectOptionTable(new String[]{"Consulta Catalunya", "Consulta Girona", "Consulta (-_-)? ", "Consulta (-_-)? "})) {
-
             case 1: {
-                //https://api.covid19tracking.narrativa.com/api/2021-04-20/country/spain/region/cataluna
-
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api/"+year+"-"+month+"-"+day+"/country/spain/region/cataluna");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 break;
             }
-
             case 2: {
-
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api/"+year+"-"+month+"-"+day+"/country/spain/region/cataluna");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                System.out.println("caca");
                 break;
             }
             case 3: {

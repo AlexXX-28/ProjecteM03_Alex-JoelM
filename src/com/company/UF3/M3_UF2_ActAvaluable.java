@@ -28,7 +28,12 @@ public class M3_UF2_ActAvaluable {
             option = Utils.validateEnterLimits(Interficie.returnSentenceCyan("Introdueix un numero del 0 al " + numOptions + " per seleccionar l'opció: "), 0, numOptions);
             switch (option) {
                 case 1: { //Consultes
-                    g.queries();
+                    try {
+                        g.queries();
+                    }catch (Exception e) {
+                        Interficie.printErrorVermell("Error al consultar");
+                        e.printStackTrace();
+                    }
                     break;
                 }
                 case 2: { //Creació del taulell
