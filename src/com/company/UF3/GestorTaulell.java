@@ -215,13 +215,13 @@ public class GestorTaulell {
         Interficie.printSentenceCyan("-- Llistat de taulells guardats --\n");
 
         while (r.hasNextLine()) {
-            System.out.println(index +") tabla:"+ r.nextLine());
+            System.out.println(index + ") tabla:" + r.nextLine());
             for (int i = 0; i < 3; i++) {
                 r.nextLine();
             }
             index++;
         }
-        int option = Utils.validateEnterLimits(Interficie.returnSentenceCyan("Seleccióna una de les seguents taules: "), 1, index)-1;
+        int option = Utils.validateEnterLimits(Interficie.returnSentenceCyan("Seleccióna una de les seguents taules: "), 1, index) - 1;
         r.close();
         r = new Scanner(origen);
         for (int i = 0; i < option * 4; i++) {
@@ -233,8 +233,30 @@ public class GestorTaulell {
         r.close();
     }
 
-    public void queries(){
-        selectOptionTable(new String[]{"Consulta Catalunya", "Consulta Girona","Consulta (-_-)? ","Consulta (-_-)? "});
+    public void queries() {
+        switch (selectOptionTable(new String[]{"Consulta Catalunya", "Consulta Girona", "Consulta (-_-)? ", "Consulta (-_-)? "})) {
+
+            case 1: {
+                //https://api.covid19tracking.narrativa.com/api/2021-04-20/country/spain/region/cataluna
+
+                break;
+            }
+
+            case 2: {
+
+                break;
+            }
+            case 3: {
+
+                break;
+            }
+            case 4: {
+
+                break;
+            }
+        }
+
+
     }
 
     /**

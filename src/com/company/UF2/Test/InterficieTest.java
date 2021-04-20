@@ -1,7 +1,8 @@
 package com.company.UF2.Test;
 
 import com.company.UF2.Interficie;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 

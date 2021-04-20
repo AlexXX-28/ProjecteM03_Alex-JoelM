@@ -29,7 +29,6 @@ public class M3_UF2_ActAvaluable {
             switch (option) {
                 case 1: { //Consultes
                     g.queries();
-                    //https://api.covid19tracking.narrativa.com/api/2021-04-20/country/spain/region/cataluna
                     break;
                 }
                 case 2: { //Creació del taulell
