@@ -18,9 +18,9 @@ public class Interficie {
      * Ens permet mostrar el menú amb les diferents opcions
      * @param tableActive Serveix per a identificar quin es el taulell seleccionat
      */
-    public static void showMenu(int tableActive) {
+    public static void showMenu() {
         String[] menu = {
-                " MENÚ taulell -> "+tableActive+"/"+(Taulell.TablesSize)+"\t\t",
+                " MENÚ taulell -> "+Taulell.currentTable+"/"+(Taulell.TablesSize)+"\t\t",
                 "1.  Consultes API       \t",
                 "2.  Carregar Taulell    \t",
                 "3.  Importar taulell    \t",

@@ -1,6 +1,8 @@
 package com.company.UF3;
 
 
+import jdk.jfr.FlightRecorder;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -19,8 +21,17 @@ import java.util.Scanner;
  * @author Joel Maria Montes
  */
 
+
 public class GestorTaulell {
     Scanner s = new Scanner(System.in);
+
+
+    public Taulell initializeTable(Taulell[] tables) {
+        tables[Taulell.TablesSize] = new Taulell();
+        Taulell.TablesSize++;
+        Taulell.currentTable = Taulell.TablesSize;
+        return tables[Taulell.TablesSize-1];
+    }
 
     /**
      * Ens permet crear un Taulell: Buit o Aleatori
@@ -209,10 +220,12 @@ public class GestorTaulell {
             }
         }
         desti.append("\n");
+
+
         desti.close();
     }
 
-    public void importTable() throws FileNotFoundException {
+    public void importTable(Taulell table) throws FileNotFoundException {
         File origen = new File("src/com/company/UF3/res/tables.txt");
         Scanner r = new Scanner(origen);
         int index = 1;
@@ -227,29 +240,23 @@ public class GestorTaulell {
         }
         int option = Utils.validateEnterLimits(Interficie.returnSentenceCyan("Seleccióna una de les seguents taules: "), 1, index) - 1;
         r.close();
-        r = new Scanner(origen);
-        for (int i = 0; i < option * 4; i++) {
-            r.nextLine();
-        }
-        r.nextLine();
-
-        //falta
-        r.close();
+        table.readTable(origen,option);
     }
 
     public void queries() throws IOException {
         Calendar fecha = new GregorianCalendar();
         int year = fecha.get(Calendar.YEAR);
-        int month = fecha.get(Calendar.MONTH)+1;
+        int month = fecha.get(Calendar.MONTH) + 1;
         int day = fecha.get(Calendar.DAY_OF_MONTH);
+        /*
         switch (selectOptionTable(new String[]{"Consulta Catalunya", "Consulta Girona", "Consulta (-_-)? ", "Consulta (-_-)? "})) {
             case 1: {
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api/"+year+"-"+month+"-"+day+"/country/spain/region/cataluna");
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/spain/region/cataluna");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 break;
             }
             case 2: {
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api/"+year+"-"+month+"-"+day+"/country/spain/region/cataluna");
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/spain/region/cataluna");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 System.out.println("caca");
                 break;
@@ -263,8 +270,7 @@ public class GestorTaulell {
                 break;
             }
         }
-
-
+         */
     }
 
     /**

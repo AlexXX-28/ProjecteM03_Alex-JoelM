@@ -1,6 +1,9 @@
 package com.company.UF3;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * La clase Taulell serveix per a la creació de diversos taulell.
@@ -15,6 +18,7 @@ public class Taulell {
     private int totalNoConf;
     private int totalsick;
     public static int TablesSize = 0;
+    public static int currentTable = 0;
 
     /**
      * Te com objectiu retornar el total NO confinat
@@ -24,7 +28,7 @@ public class Taulell {
         return totalNoConf;
     }
 
-    public  int getTotalsick(){
+    public int getTotalsick(){
         return totalsick;
     }
     /**
@@ -152,5 +156,25 @@ public class Taulell {
             }
         }
         return totalSick;
+    }
+    public void readTable(File origen,int option) throws FileNotFoundException {
+        Scanner r = new Scanner(origen);
+        for (int i = 0; i < option * 4; i++) {
+            r.nextLine();
+        }
+        r.nextLine();
+        r.nextInt();
+        this.totalHeal = r.nextInt();
+        this.totalsick = r.nextInt();
+        this.column = r.nextInt();
+        this.row = r.nextInt();
+        this.totalNoConf = r.nextInt();
+        this.table = new int[row][column];
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.column; j++) {
+                this.table[i][j] = r.nextInt();
+            }
+        }
+        r.close();
     }
 }

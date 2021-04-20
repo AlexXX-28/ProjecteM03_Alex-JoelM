@@ -21,10 +21,9 @@ public class M3_UF2_ActAvaluable {
         Taulell table = null;
         int numOptions = 3;
         Taulell[] tables = new Taulell[100];
-        int currentTable = 0;
 
         do {
-            Interficie.showMenu(currentTable);
+            Interficie.showMenu();
             option = Utils.validateEnterLimits(Interficie.returnSentenceCyan("Introdueix un numero del 0 al " + numOptions + " per seleccionar l'opció: "), 0, numOptions);
             switch (option) {
                 case 1: { //Consultes
@@ -37,17 +36,16 @@ public class M3_UF2_ActAvaluable {
                     break;
                 }
                 case 2: { //Creació del taulell
-                    tables[Taulell.TablesSize] = new Taulell();
-                    table = tables[Taulell.TablesSize];
-                    Taulell.TablesSize++;
-                    currentTable = Taulell.TablesSize;
+                    table = g.initializeTable(tables);
                     g.creatTable(table, g.selectOptionTable(new String[]{"Taulell buit", "Taulell amb malalts"}));
                     numOptions = 11;
                     break;
                 }
                 case 3: {//Importar taulell
                     try {
-                        g.importTable();
+                        table = g.initializeTable(tables);
+                        g.importTable(table);
+                        numOptions = 11;
                     } catch (Exception e) {
                         Interficie.printErrorVermell("Error al guardar les taules");
                         e.printStackTrace();
@@ -56,7 +54,7 @@ public class M3_UF2_ActAvaluable {
                 }
                 case 4: { //Guardar taulell
                     try {
-                        g.saveTable(table, currentTable);
+                        g.saveTable(table, Taulell.currentTable);
                     } catch (Exception e) {
                         Interficie.printErrorVermell("Error al guardar les taules");
                         e.printStackTrace();
@@ -84,8 +82,8 @@ public class M3_UF2_ActAvaluable {
                     break;
                 }
                 case 10: { // Seleccionar el taulell de treball
-                    currentTable = Utils.validateEnterLimits("Selecciona el número de taulell: ", 1, Taulell.TablesSize);
-                    table = tables[currentTable - 1];
+                    Taulell.currentTable = Utils.validateEnterLimits("Selecciona el número de taulell: ", 1, Taulell.TablesSize);
+                    table = tables[Taulell.currentTable - 1];
                     break;
                 }
                 case 11: { // Buidar Taulell
