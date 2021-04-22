@@ -257,15 +257,22 @@ public class GestorTaulell {
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
                 JSONObject total = (JSONObject) jsonObject.get("total");
                 System.out.println("-- Catalunya --" +
-                        "\nAvui Confirmats: " + total.get("today_confirmed") +
+                        "\nAvui confirmats: " + total.get("today_confirmed") +
                         "\nAvui han morts: " + total.get("today_deaths")+
                         "\nAvui nous confirmats: " + total.get("today_new_confirmed"));
+                connection.disconnect();
                 break;
             }
             case 2: {
                 URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/spain/region/cataluna");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                System.out.println("caca");
+                JSONParser parser = new JSONParser();
+                JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
+                JSONArray subRegions = (JSONArray) jsonObject.get("sub_regions");
+                JSONObject gerona = (JSONObject) subRegions.get(1);
+                System.out.println("-- Girona --" +
+                        "\nAvui confirmats: " + gerona.get("today_confirmed"));
+                connection.disconnect();
                 break;
             }
             case 3: {
