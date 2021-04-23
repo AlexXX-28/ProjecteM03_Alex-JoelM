@@ -256,10 +256,7 @@ public class GestorTaulell {
                 JSONParser parser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
                 JSONObject total = (JSONObject) jsonObject.get("total");
-                System.out.println("-- Catalunya --" +
-                        "\nAvui confirmats: " + total.get("today_confirmed") +
-                        "\nAvui han morts: " + total.get("today_deaths")+
-                        "\nAvui nous confirmats: " + total.get("today_new_confirmed"));
+                System.out.println("-- Catalunya --" + "\nAvui confirmats: " + total.get("today_confirmed"));
                 connection.disconnect();
                 break;
             }
@@ -275,7 +272,15 @@ public class GestorTaulell {
                 JSONArray regions = (JSONArray) spain.get("regions");
                 JSONObject regioCatalunya = (JSONObject) regions.get(0);
                 JSONArray subRegions = (JSONArray) regioCatalunya.get("sub_regions");
-                JSONObject gerona = (JSONObject) subRegions.get(1);
+
+                boolean bol = false;
+                JSONObject gerona = null;
+                for (int i = 0; i < subRegions.size() && bol == false; i++) {
+                    gerona = (JSONObject) subRegions.get(i);
+                    if (gerona.get("id").equals("gerona")){
+                        bol = true;
+                    }
+                }
                 System.out.println("-- Girona --" +
                         "\nAvui confirmats: " + gerona.get("today_confirmed"));
                 connection.disconnect();
