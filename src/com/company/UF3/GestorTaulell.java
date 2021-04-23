@@ -268,7 +268,13 @@ public class GestorTaulell {
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 JSONParser parser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
-                JSONArray subRegions = (JSONArray) jsonObject.get("sub_regions");
+                JSONObject dates = (JSONObject) jsonObject.get("dates");
+                JSONObject lastDay = (JSONObject) dates.get(year + "-0"  + month + "-" + day);
+                JSONObject countries = (JSONObject) lastDay.get("countries");
+                JSONObject spain = (JSONObject) countries.get("Spain");
+                JSONArray regions = (JSONArray) spain.get("regions");
+                JSONObject regioCatalunya = (JSONObject) regions.get(0);
+                JSONArray subRegions = (JSONArray) regioCatalunya.get("sub_regions");
                 JSONObject gerona = (JSONObject) subRegions.get(1);
                 System.out.println("-- Girona --" +
                         "\nAvui confirmats: " + gerona.get("today_confirmed"));
