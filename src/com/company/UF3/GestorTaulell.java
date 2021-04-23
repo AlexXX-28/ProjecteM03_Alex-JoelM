@@ -210,7 +210,7 @@ public class GestorTaulell {
     }
 
     public void saveTable(Taulell table, int currentTable) throws IOException {
-        FileWriter desti = new FileWriter("src/com/company/UF3/res/tables.txt", true);
+        FileWriter desti = new FileWriter("res/tables.txt", true);
         Date objDate = new Date();
         desti.append(currentTable + " " + objDate.toString() + "\n");
         desti.append(table.getNumSicks() + " " + table.getTotalHeal() + " " + table.getTotalsick() + "\n");
@@ -227,7 +227,7 @@ public class GestorTaulell {
     }
 
     public void importTable(Taulell table) throws FileNotFoundException {
-        File origen = new File("src/com/company/UF3/res/tables.txt");
+        File origen = new File("res/tables.txt");
         Scanner r = new Scanner(origen);
         int index = 1;
         Interficie.printSentenceCyan("-- Llistat de taulells guardats --\n");
