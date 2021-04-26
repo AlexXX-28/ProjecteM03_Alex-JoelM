@@ -248,21 +248,20 @@ public class GestorTaulell {
         Calendar fecha = new GregorianCalendar();
         int year = fecha.get(Calendar.YEAR);
         int month = fecha.get(Calendar.MONTH) + 1;
-        int day = fecha.get(Calendar.DAY_OF_MONTH);
-        switch (selectOptionTable(new String[]{"Consulta Catalunya", "Consulta Girona", "Consulta (-_-)? ", "Consulta (-_-)? "})) {
+        int day = fecha.get(Calendar.DAY_OF_MONTH) - 1;
+        URL urlCatalunya = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/spain/region/cataluna");
+        switch (selectOptionTable(new String[]{"Consulta Catalunya, Espanya", "Consulta Girona, Espanya", "Consulta Reunion, França", "Consulta Sicilia, Italia "})) {
             case 1: {
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/spain/region/cataluna");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                HttpURLConnection connection = (HttpURLConnection) urlCatalunya.openConnection();
                 JSONParser parser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
                 JSONObject total = (JSONObject) jsonObject.get("total");
-                System.out.println("-- Catalunya --" + "\nAvui confirmats: " + total.get("today_confirmed"));
+                System.out.println("-- Catalunya, Espanya --" + "\nAvui confirmats: " + total.get("today_confirmed"));
                 connection.disconnect();
                 break;
             }
             case 2: {
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/spain/region/cataluna");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                HttpURLConnection connection = (HttpURLConnection) urlCatalunya.openConnection();
                 JSONParser parser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
                 JSONObject dates = (JSONObject) jsonObject.get("dates");
@@ -281,17 +280,58 @@ public class GestorTaulell {
                         bol = true;
                     }
                 }
-                System.out.println("-- Girona --" +
+                System.out.println("-- Girona, Espanya --" +
                         "\nAvui confirmats: " + gerona.get("today_confirmed"));
                 connection.disconnect();
                 break;
             }
             case 3: {
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/france");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                JSONParser parser = new JSONParser();
+                JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
+                JSONObject dates = (JSONObject) jsonObject.get("dates");
+                JSONObject lastDay = (JSONObject) dates.get(year + "-0"  + month + "-" + day);
+                JSONObject countries = (JSONObject) lastDay.get("countries");
+                JSONObject france = (JSONObject) countries.get("France");
+                JSONArray regions = (JSONArray) france.get("regions");
 
+                boolean bol = false;
+                JSONObject reunion = null;
+                for (int i = 0; i < regions.size() && bol == false; i++) {
+                    reunion = (JSONObject) regions.get(i);
+                    if (reunion.get("id").equals("reunion")){
+                        bol = true;
+                    }
+                }
+                System.out.println("-- Reunion, França --" +
+                        "\nAvui confirmats: " + reunion.get("today_confirmed"));
+                connection.disconnect();
                 break;
             }
             case 4: {
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/italy");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                JSONParser parser = new JSONParser();
+                JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
+                JSONObject dates = (JSONObject) jsonObject.get("dates");
+                JSONObject lastDay = (JSONObject) dates.get(year + "-0"  + month + "-" + day);
+                JSONObject countries = (JSONObject) lastDay.get("countries");
+                JSONObject italy = (JSONObject) countries.get("Italy");
+                JSONArray regions = (JSONArray) italy.get("regions");
 
+
+                boolean bol = false;
+                JSONObject sicilia = null;
+                for (int i = 0; i < regions.size() && bol == false; i++) {
+                    sicilia = (JSONObject) regions.get(i);
+                    if (sicilia.get("id").equals("sicilia")){
+                        bol = true;
+                    }
+                }
+                System.out.println("-- Sicilia, Italia --" +
+                        "\nAvui confirmats: " + sicilia.get("today_confirmed"));
+                connection.disconnect();
                 break;
             }
         }
