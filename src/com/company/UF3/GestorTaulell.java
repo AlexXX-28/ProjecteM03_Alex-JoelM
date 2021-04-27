@@ -210,6 +210,12 @@ public class GestorTaulell {
 
     }
 
+    /**
+     *
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     * @param currentTable Indica el taulell actual
+     * @throws IOException Ens permet capturar les exceptions de Input-Output
+     */
     public void saveTable(Taulell table, int currentTable) throws IOException {
         FileWriter desti = new FileWriter("res/tables.txt", true);
         Date objDate = new Date();
@@ -227,6 +233,11 @@ public class GestorTaulell {
         desti.close();
     }
 
+    /**
+     *
+     * @param table Es la classe Taulell que ens permet tenir l'informació de la taula seleccionada
+     * @throws FileNotFoundException Ens permet capturar l'error de que no trobi l'arxiu
+     */
     public void importTable(Taulell table) throws FileNotFoundException {
         File origen = new File("res/tables.txt");
         Scanner r = new Scanner(origen);
@@ -245,98 +256,179 @@ public class GestorTaulell {
         table.readTable(origen, option);
     }
 
-    public void queries() throws IOException, ParseException {
+    /**
+     * Aquesta funcio mostra el numero de confirmats de COVID-19 de l'ultim dia a Catalunya
+     * @param yesterday Es una variable que ens dona el dia d'ahir
+     * @throws IOException Ens permet capturar les exceptions de Input-Output
+     * @throws ParseException  Ens permet capturar l'exception de la fallada alhora de parsejar el fitxer JSON
+     */
+    public void querieOne(LocalDate yesterday) throws IOException, ParseException{
+            URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday + "/country/spain/region/cataluna");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
+            JSONObject total = (JSONObject) jsonObject.get("total");
+            Interficie.printSentence("-- Catalunya, Espanya --" + "\nAvui confirmats: " + total.get("today_confirmed"));
+            connection.disconnect();
+        }
+
+    /**
+     * Aquesta funcio mostra el numero de confirmats de COVID-19 de l'ultim dia a Girona
+     * @param yesterday Es una variable que ens dona el dia d'ahir
+     * @throws IOException Ens permet capturar les exceptions de Input-Output
+     * @throws ParseException Ens permet capturar l'exception de la fallada alhora de parsejar el fitxer JSON
+     */
+        public void querieTwo(LocalDate yesterday) throws IOException, ParseException {
+
+            URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday + "/country/spain/region/cataluna");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
+            JSONObject dates = (JSONObject) jsonObject.get("dates");
+            JSONObject lastDay = (JSONObject) dates.get("" + yesterday);
+            JSONObject countries = (JSONObject) lastDay.get("countries");
+            JSONObject spain = (JSONObject) countries.get("Spain");
+            JSONArray regions = (JSONArray) spain.get("regions");
+            JSONObject regioCatalunya = (JSONObject) regions.get(0);
+            JSONArray subRegions = (JSONArray) regioCatalunya.get("sub_regions");
+
+            boolean bol = false;
+            JSONObject gerona = null;
+            for (int i = 0; i < subRegions.size() && bol == false; i++) {
+                gerona = (JSONObject) subRegions.get(i);
+                if (gerona.get("id").equals("gerona")){
+                    bol = true;
+                }
+            }
+            Interficie.printSentence("-- Girona, Espanya --" +
+                    "\nAvui confirmats: " + gerona.get("today_confirmed"));
+            connection.disconnect();
+        }
+
+    /**
+     * Aquesta funcio mostra el total de morts de l'ultim dia a New York
+     * @param yesterday Es una variable que ens dona el dia d'ahir
+     * @throws IOException Ens permet capturar les exceptions de Input-Output
+     * @throws ParseException Ens permet capturar l'exception de la fallada alhora de parsejar el fitxer JSON
+     */
+        public void querieThree(LocalDate yesterday) throws IOException, ParseException {
+            long totalDeaths = 0;
+            URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday + "/country/US");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
+            JSONObject dates = (JSONObject) jsonObject.get("dates");
+            JSONObject lastDay = (JSONObject) dates.get("" + yesterday);
+            JSONObject countries = (JSONObject) lastDay.get("countries");
+            JSONObject unitedStates = (JSONObject) countries.get("US");
+            JSONArray regions = (JSONArray) unitedStates.get("regions");
+
+            boolean bol = false;
+            JSONObject newYork = null;
+            for (int i = 0; i < regions.size() && bol == false; i++) {
+                newYork = (JSONObject) regions.get(i);
+                if (newYork.get("id").equals("new_york")){
+                    bol = true;
+                }
+            }
+            JSONArray subRegions = (JSONArray) newYork.get("sub_regions");
+            JSONObject subRegio = null;
+            for (int i = 0; i < subRegions.size(); i++) {
+                subRegio = (JSONObject) subRegions.get(i);
+                totalDeaths += (long)subRegio.get("today_deaths");
+            }
+
+            Interficie.printSentence("-- New York --" +
+                    "\nAvui morts: " + totalDeaths);
+            connection.disconnect();
+        }
+
+    /**
+     * Aquesta funcio mostra les noves morts durant els 3 primers dies d'Abril a França
+     * @throws IOException Ens permet capturar les exceptions de Input-Output
+     * @throws ParseException Ens permet capturar l'exception de la fallada alhora de parsejar el fitxer JSON
+     */
+        public void querieFour() throws IOException, ParseException {
+            long totalNewDeaths = 0;
+            URL url = new URL("https://api.covid19tracking.narrativa.com/api/country/france?date_from=2020-04-01&date_to=2020-04-03");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
+            JSONObject dates = (JSONObject) jsonObject.get("dates");
+            JSONObject firstDay = (JSONObject) dates.get("2020-04-01");
+            JSONObject secondDay = (JSONObject) dates.get("2020-04-02");
+            JSONObject thirdDay = (JSONObject) dates.get("2020-04-03");
+
+            JSONObject countries = (JSONObject) firstDay.get("countries");
+            JSONObject france = (JSONObject) countries.get("France");
+            JSONArray regions = (JSONArray) france.get("regions");
+
+            JSONObject regio;
+
+
+            for (int i = 0; i < regions.size() -1; i++) {
+                regio = (JSONObject) regions.get(i);
+                Object todayNewConfirmed = regio.get("today_new_deaths");
+                if (todayNewConfirmed != null) {
+                    totalNewDeaths += (long)todayNewConfirmed;
+                }
+            }
+
+            countries = (JSONObject) secondDay.get("countries");
+            france = (JSONObject) countries.get("France");
+            regions = (JSONArray) france.get("regions");
+
+            for (int i = 0; i < regions.size() -1; i++) {
+                regio = (JSONObject) regions.get(i);
+                Object todayNewConfirmed = regio.get("today_new_deaths");
+                if (todayNewConfirmed != null) {
+                    totalNewDeaths += (long)todayNewConfirmed;
+                }
+            }
+
+            countries = (JSONObject) thirdDay.get("countries");
+            france = (JSONObject) countries.get("France");
+            regions = (JSONArray) france.get("regions");
+
+            for (int i = 0; i < regions.size() -1; i++) {
+                regio = (JSONObject) regions.get(i);
+                Object todayNewConfirmed = regio.get("today_new_deaths");
+                if (todayNewConfirmed != null) {
+                    totalNewDeaths += (long)todayNewConfirmed;
+                }
+            }
+
+            Interficie.printSentence("-- França --" +
+                    "\nEn els primers 3 dies d'Abril es van confirmar : " + totalNewDeaths + " noves morts");
+            connection.disconnect();
+        }
+
+
+    /**
+     * Aquesta funcio ens permet gestionar l'opció de les consultes API
+     * @throws IOException Ens permet capturar les exceptions de Input-Output
+     * @throws ParseException Ens permet capturar l'exception de la fallada alhora de parsejar el fitxer JSON
+     */
+        public void queries() throws IOException, ParseException {
         LocalDate now = LocalDate.now();
         now.minusDays(1);
         LocalDate yesterday = now.minusDays(1);
-        URL urlCatalunya = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday + "/country/spain/region/cataluna");
-        switch (selectOptionTable(new String[]{"Consulta Catalunya, Espanya", "Consulta Girona, Espanya", "Morts Avui | New York", "Nous Infectats 3 Primers dies d'Abril a la Reunion, França"})) {
+
+        switch (selectOptionTable(new String[]{"Consulta Catalunya, Espanya", "Consulta Girona, Espanya", "Morts Avui | New York", "Nous Morts 3 Primers dies d'Abril a França"})) {
             case 1: {
-                HttpURLConnection connection = (HttpURLConnection) urlCatalunya.openConnection();
-                JSONParser parser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
-                JSONObject total = (JSONObject) jsonObject.get("total");
-                System.out.println("-- Catalunya, Espanya --" + "\nAvui confirmats: " + total.get("today_confirmed"));
-                connection.disconnect();
+                querieOne(yesterday);
                 break;
             }
             case 2: {
-                HttpURLConnection connection = (HttpURLConnection) urlCatalunya.openConnection();
-                JSONParser parser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
-                JSONObject dates = (JSONObject) jsonObject.get("dates");
-                JSONObject lastDay = (JSONObject) dates.get(yesterday);
-                JSONObject countries = (JSONObject) lastDay.get("countries");
-                JSONObject spain = (JSONObject) countries.get("Spain");
-                JSONArray regions = (JSONArray) spain.get("regions");
-                JSONObject regioCatalunya = (JSONObject) regions.get(0);
-                JSONArray subRegions = (JSONArray) regioCatalunya.get("sub_regions");
-
-                boolean bol = false;
-                JSONObject gerona = null;
-                for (int i = 0; i < subRegions.size() && bol == false; i++) {
-                    gerona = (JSONObject) subRegions.get(i);
-                    if (gerona.get("id").equals("gerona")){
-                        bol = true;
-                    }
-                }
-                System.out.println("-- Girona, Espanya --" +
-                        "\nAvui confirmats: " + gerona.get("today_confirmed"));
-                connection.disconnect();
+                querieTwo(yesterday);
                 break;
             }
             case 3: {
-                int totalDeaths = 0;
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                JSONParser parser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
-                JSONObject dates = (JSONObject) jsonObject.get("dates");
-                JSONObject lastDay = (JSONObject) dates.get("" + yesterday);
-                JSONObject countries = (JSONObject) lastDay.get("countries");
-
-                boolean bol = false;
-                JSONObject newYork = null;
-                for (int i = 0; i < countries.size() && bol == false; i++) {
-                    newYork = (JSONObject) countries.get(i);
-                    if (newYork.get("id").equals("new_york")){
-                        bol = true;
-                    }
-                }
-                JSONArray subRegions = (JSONArray) newYork.get("sub_regions");
-                JSONObject subRegio = null;
-                for (int i = 0; i < subRegions.size(); i++) {
-                    subRegio = (JSONObject) subRegions.get(i);
-                    totalDeaths += (int)subRegio.get("today_deaths");
-                }
-                System.out.println("-- Nous Infectats | New York --" +
-                        "\nAvui morts: " + totalDeaths);
-                connection.disconnect();
+                querieThree(yesterday);
                 break;
             }
             case 4: {
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api?date_from=2020-04-10&date_to=2020-04-14");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                JSONParser parser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
-                JSONObject dates = (JSONObject) jsonObject.get("dates");
-                JSONObject lastDay = (JSONObject) dates.get("2020-04-10");
-                JSONObject countries = (JSONObject) lastDay.get("countries");
-                JSONObject italy = (JSONObject) countries.get("Italy");
-                JSONArray regions = (JSONArray) italy.get("regions");
-
-
-                boolean bol = false;
-                JSONObject sicilia = null;
-                for (int i = 0; i < regions.size() && bol == false; i++) {
-                    sicilia = (JSONObject) regions.get(i);
-                    if (sicilia.get("id").equals("sicilia")){
-                        bol = true;
-                    }
-                }
-                System.out.println("-- França --" +
-                        "\nNous Infectats 3 Primers dies d'Abril a la Reunion, França: " + sicilia.get("today_confirmed"));
-                connection.disconnect();
+                querieFour();
                 break;
             }
         }
@@ -344,7 +436,6 @@ public class GestorTaulell {
 
     /**
      * Ens permet escollir entre diferents opcions
-     *
      * @param sentences Es la frase que es mostra per a escollir entre les diferents opcions
      * @return Retorna la opcio escollida
      */
