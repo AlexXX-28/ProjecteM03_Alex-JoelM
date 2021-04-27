@@ -1,7 +1,5 @@
 package com.company.UF3;
 
-
-import jdk.jfr.FlightRecorder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,9 +9,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
@@ -123,6 +119,8 @@ public class GestorTaulell {
             if (table.getCell(row, column) > 0) {
                 if (numericOrPercent == 1) {
                     int percent = Utils.validateEnterLimits("Introduiex el percentatge de 0-100 (sense %): ", 0, 100);
+                    int curados = table.getCell(row, column) * percent / 100;
+                    table.addCell(row, column, -curados);
                 } else {
                     int valor = Utils.validateEnterLimits("Introdueix el numero de malalts per curar a la columna " + column + 1 + " de la fila " + row + 1 + ": ", 0, table.getCell(row, column));
                     table.addCell(row, column, -valor);
@@ -247,7 +245,7 @@ public class GestorTaulell {
 
     public void queries() throws IOException, ParseException {
         LocalDate now = LocalDate.now();
-        now.minusDays(1);
+        now = now.minusDays(1);
         LocalDate yesterday = now.minusDays(1);
         URL urlCatalunya = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday + "/country/spain/region/cataluna");
         switch (selectOptionTable(new String[]{"Consulta Catalunya, Espanya", "Consulta Girona, Espanya", "Morts Avui | New York", "Nous Infectats 3 Primers dies d'Abril a la Reunion, França"})) {
@@ -274,7 +272,7 @@ public class GestorTaulell {
 
                 boolean bol = false;
                 JSONObject gerona = null;
-                for (int i = 0; i < subRegions.size() && bol == false; i++) {
+                for (int i = 0; i < subRegions.size() && !bol; i++) {
                     gerona = (JSONObject) subRegions.get(i);
                     if (gerona.get("id").equals("gerona")){
                         bol = true;
@@ -297,7 +295,7 @@ public class GestorTaulell {
 
                 boolean bol = false;
                 JSONObject newYork = null;
-                for (int i = 0; i < countries.size() && bol == false; i++) {
+                for (int i = 0; i < countries.size() && !bol; i++) {
                     newYork = (JSONObject) countries.get(i);
                     if (newYork.get("id").equals("new_york")){
                         bol = true;
@@ -328,7 +326,7 @@ public class GestorTaulell {
 
                 boolean bol = false;
                 JSONObject sicilia = null;
-                for (int i = 0; i < regions.size() && bol == false; i++) {
+                for (int i = 0; i < regions.size() && !bol; i++) {
                     sicilia = (JSONObject) regions.get(i);
                     if (sicilia.get("id").equals("sicilia")){
                         bol = true;
