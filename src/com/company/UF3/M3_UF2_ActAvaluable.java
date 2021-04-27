@@ -30,7 +30,7 @@ public class M3_UF2_ActAvaluable {
                     try {
                         g.queries();
                     }catch (Exception e) {
-                        Interficie.printErrorVermell("Error al consultar");
+                        Interficie.printErrorVermell("Error al consultar\n");
                         e.printStackTrace();
                     }
                     break;
@@ -47,7 +47,7 @@ public class M3_UF2_ActAvaluable {
                         g.importTable(table);
                         numOptions = 11;
                     } catch (Exception e) {
-                        Interficie.printErrorVermell("Error al guardar les taules");
+                        Interficie.printErrorVermell("Error al guardar les taules\n");
                         e.printStackTrace();
                     }
                     break;
@@ -56,7 +56,7 @@ public class M3_UF2_ActAvaluable {
                     try {
                         g.saveTable(table, Taulell.currentTable);
                     } catch (Exception e) {
-                        Interficie.printErrorVermell("Error al guardar les taules");
+                        Interficie.printErrorVermell("Error al guardar les taules\n");
                         e.printStackTrace();
                     }
                     break;
