@@ -245,7 +245,6 @@ public class GestorTaulell {
 
     public void queries() throws IOException, ParseException {
         LocalDate now = LocalDate.now();
-        now = now.minusDays(1);
         LocalDate yesterday = now.minusDays(1);
         URL urlCatalunya = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday + "/country/spain/region/cataluna");
         switch (selectOptionTable(new String[]{"Consulta Catalunya, Espanya", "Consulta Girona, Espanya", "Morts Avui | New York", "Nous Infectats 3 Primers dies d'Abril a la Reunion, França"})) {
