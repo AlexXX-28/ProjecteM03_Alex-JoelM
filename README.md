@@ -50,8 +50,11 @@ Fent proves de que el nostre codi funcionava correctament vam tenir alguns error
 -En l'apartat de "Mostrar informació" quan vam voler que les "X" es mostresin de vermell, no sabiem que amb el que posavem a continuació tot seria vermell en comptes de nomes les "X".
 ![Tot el codi a continuació de les "X" es vermell](/Images/Captura.PNG)
 
--En l'apartat de "Desplaçar Malalts" quan s'havien d'utilitzar les diferents tecles per a desplaçar a X posició, vam tenir problemes alhora de que es desplaçessin a les posicions correctes, i per exemple si es clicaba la Q per a que es desplaçes a dalt a l'esquerra, es desplaçaba a baix a la dreta.
+-En l'apartat de "Desplaçar Malalts" quan s'havien d'utilitzar les diferents tecles per a desplaçar a X posició, vam tenir problemes alhora de que es desplaçessin a les posicions correctes. 
+Per exemple si es clicaba la Q per a que es desplaçes a dalt a l'esquerra, es desplaçaba a baix a la dreta.
+
 ![Es desplaçen a on no s'hauria de desplaçar](/Images/Captura1.1.PNG)
+
 ![Es desplaçen a on no s'hauria de desplaçar](/Images/Captura1.2.PNG)
 
 El requadre groc es la posició actual, el cercle es a on s'hauria de desplaçar i el triangle es a on es desplaça.
@@ -98,22 +101,34 @@ Alhora de desplaçar malalts quan indiquem cap a on validem que sigui de tipus "
 Tenim opcions de testeig que ens validen que les frases que printem amb un color es facin correctament:
 ![Tenim opcions de testeig que ens validen que les frases que printem amb un color es facin correctament:](/Images/UF2/Captura6.PNG)
 
+## Importació i emmagatzematge de dades en fitxers TXT
 
+## Consum de l'API REST de dades COVID
+
+En l'API REST de les dades del COVID vam fer les següents consultes:
+- Confirmats de COVID al darrer dia a Catalunya
+- Confirmats de COVID al darrer dia a Girona
+- Nous morts per COVID al darrer dia a New York
+- Total de morts per COVID entre els 3 primers dies d'Abril
 
 ## Javadoc
 
 link: [JavaDoc](src/com/company/UF2/Docs/index.html)
-## Propostes de millora
-Tot i que nomes es requeria una proposta de millora, hi havien força coses que ens molestaven o no acababen d'agradar-nos.
 
-Per exemple que alhora de printar en la consola tant menu, com errors, com diferents opcions, quedava tot amb el mateix color i feia que la lectura fos ilegible, i per tant vam decidir que podiem afegir colors per a que tot es diferencies i es pogues llegir d'una manera correcta.
+## Propostes de millora
+
+- Tot i que nomes es requeria una proposta de millora, hi havien força coses que ens molestaven o no acababen d'agradar-nos.
+
+- Per exemple que alhora de printar en la consola tant menu, com errors, com diferents opcions, quedava tot amb el mateix color i feia que la lectura fos ilegible, i per tant vam decidir que podiem afegir colors per a que tot es diferencies i es pogues llegir d'una manera correcta.
 Vam canviar el menu per a que tingues uns contorns amb "asteriscs" de color blau, els errors els vam printar de color vermell, a l'igual que les "X".
 
-De la següent cosa que ens vam adonar va ser que era poc optim haver de sortir-se de les opcions del menú cada vegada que feies 1 canvi, per tant vam donar la opció que despres d'utilitzar cada opció del menu sortis un missatge que et preguntes si volies seguir utilitzant aquella opció.
+- De la següent cosa que ens vam adonar va ser que era poc optim haver de sortir-se de les opcions del menú cada vegada que feies 1 canvi, per tant vam donar la opció que despres d'utilitzar cada opció del menu sortis un missatge que et preguntes si volies seguir utilitzant aquella opció.
 
-També vam pensar que no tenia sentit poder seleccionar opcions del menú que editaven el taulell, sense haver creat un previament, per tant vam haver de fer un validador que s'actives quan es feia la 1a opció "Carregar taulell".
+- També vam pensar que no tenia sentit poder seleccionar opcions del menú que editaven el taulell, sense haver creat un previament, per tant vam haver de fer un validador que s'actives quan es feia la 1a opció "Carregar taulell".
 Bàsicament si no has creat el taulell i intentes per exemple "Curar malalts" et sortira un missatge d'error dient-te "El taullel no s'ha creat".
 
-Un altre problema que ens resultaba molest, era que si t'equivoques en algun apartat que et demana alguna dada i tu has posat per exemple, més de lo posible, o simplement alguna dada erronea, doncs em fet que ho detecti i que surti un missatge d'error descriptiu, i que et permeti tornar a introduir la dada. Tot això mitjançant una funció que ens valida si el numero es "Int" i si esta dins d'un rang.
+- Un altre problema que ens resultaba molest, era que si t'equivoques en algun apartat que et demana alguna dada i tu has posat per exemple, més de lo posible, o simplement alguna dada erronea, doncs em fet que ho detecti i que surti un missatge d'error descriptiu, i que et permeti tornar a introduir la dada. Tot això mitjançant una funció que ens valida si el numero es "Int" i si esta dins d'un rang.
 
-Ens va semblar que tenir un unic taulell era una mica ineficient i ens quedavem curts, així doncs vam fer que es puguin crear més d'un taulell i per tant seleccionar quin es el que vols, i també vam afegir una opció per a poder buidar el taulell seleccionat.
+- Ens va semblar que tenir un unic taulell era una mica ineficient i ens quedavem curts, així doncs vam fer que es puguin crear més d'un taulell i per tant seleccionar quin es el que vols, i també vam afegir una opció per a poder buidar el taulell seleccionat.
+
+- En quant a l'apartat de l'escriptura i la lectura en i d'un fitxer de text, vam pensar que seria molt millor si puguessim fer l'escriptura en un format i que la lectura pogues llegir l'arxiu amb el mateix format que s'havia escrit, per tant ho vam implementar.
