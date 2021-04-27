@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -245,12 +246,11 @@ public class GestorTaulell {
     }
 
     public void queries() throws IOException, ParseException {
-        Calendar fecha = new GregorianCalendar();
-        int year = fecha.get(Calendar.YEAR);
-        int month = fecha.get(Calendar.MONTH) + 1;
-        int day = fecha.get(Calendar.DAY_OF_MONTH) - 1;
-        URL urlCatalunya = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/spain/region/cataluna");
-        switch (selectOptionTable(new String[]{"Consulta Catalunya, Espanya", "Consulta Girona, Espanya", "Consulta Reunion, França", "Consulta Sicilia, Italia "})) {
+        LocalDate now = LocalDate.now();
+        now.minusDays(1);
+        LocalDate yesterday = now.minusDays(1);
+        URL urlCatalunya = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday + "/country/spain/region/cataluna");
+        switch (selectOptionTable(new String[]{"Consulta Catalunya, Espanya", "Consulta Girona, Espanya", "Morts Avui | New York", "Nous Infectats 3 Primers dies d'Abril a la Reunion, França"})) {
             case 1: {
                 HttpURLConnection connection = (HttpURLConnection) urlCatalunya.openConnection();
                 JSONParser parser = new JSONParser();
@@ -265,7 +265,7 @@ public class GestorTaulell {
                 JSONParser parser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
                 JSONObject dates = (JSONObject) jsonObject.get("dates");
-                JSONObject lastDay = (JSONObject) dates.get(year + "-0"  + month + "-" + day);
+                JSONObject lastDay = (JSONObject) dates.get(yesterday);
                 JSONObject countries = (JSONObject) lastDay.get("countries");
                 JSONObject spain = (JSONObject) countries.get("Spain");
                 JSONArray regions = (JSONArray) spain.get("regions");
@@ -286,36 +286,41 @@ public class GestorTaulell {
                 break;
             }
             case 3: {
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/france");
+                int totalDeaths = 0;
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + yesterday);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 JSONParser parser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
                 JSONObject dates = (JSONObject) jsonObject.get("dates");
-                JSONObject lastDay = (JSONObject) dates.get(year + "-0"  + month + "-" + day);
+                JSONObject lastDay = (JSONObject) dates.get("" + yesterday);
                 JSONObject countries = (JSONObject) lastDay.get("countries");
-                JSONObject france = (JSONObject) countries.get("France");
-                JSONArray regions = (JSONArray) france.get("regions");
 
                 boolean bol = false;
-                JSONObject reunion = null;
-                for (int i = 0; i < regions.size() && bol == false; i++) {
-                    reunion = (JSONObject) regions.get(i);
-                    if (reunion.get("id").equals("reunion")){
+                JSONObject newYork = null;
+                for (int i = 0; i < countries.size() && bol == false; i++) {
+                    newYork = (JSONObject) countries.get(i);
+                    if (newYork.get("id").equals("new_york")){
                         bol = true;
                     }
                 }
-                System.out.println("-- Reunion, França --" +
-                        "\nAvui confirmats: " + reunion.get("today_confirmed"));
+                JSONArray subRegions = (JSONArray) newYork.get("sub_regions");
+                JSONObject subRegio = null;
+                for (int i = 0; i < subRegions.size(); i++) {
+                    subRegio = (JSONObject) subRegions.get(i);
+                    totalDeaths += (int)subRegio.get("today_deaths");
+                }
+                System.out.println("-- Nous Infectats | New York --" +
+                        "\nAvui morts: " + totalDeaths);
                 connection.disconnect();
                 break;
             }
             case 4: {
-                URL url = new URL("https://api.covid19tracking.narrativa.com/api/" + year + "-" + month + "-" + day + "/country/italy");
+                URL url = new URL("https://api.covid19tracking.narrativa.com/api?date_from=2020-04-10&date_to=2020-04-14");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 JSONParser parser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) parser.parse(new InputStreamReader(connection.getInputStream()));
                 JSONObject dates = (JSONObject) jsonObject.get("dates");
-                JSONObject lastDay = (JSONObject) dates.get(year + "-0"  + month + "-" + day);
+                JSONObject lastDay = (JSONObject) dates.get("2020-04-10");
                 JSONObject countries = (JSONObject) lastDay.get("countries");
                 JSONObject italy = (JSONObject) countries.get("Italy");
                 JSONArray regions = (JSONArray) italy.get("regions");
@@ -329,8 +334,8 @@ public class GestorTaulell {
                         bol = true;
                     }
                 }
-                System.out.println("-- Sicilia, Italia --" +
-                        "\nAvui confirmats: " + sicilia.get("today_confirmed"));
+                System.out.println("-- França --" +
+                        "\nNous Infectats 3 Primers dies d'Abril a la Reunion, França: " + sicilia.get("today_confirmed"));
                 connection.disconnect();
                 break;
             }
