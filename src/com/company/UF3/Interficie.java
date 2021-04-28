@@ -16,7 +16,6 @@ public class Interficie {
 
     /**
      * Ens permet mostrar el menú amb les diferents opcions
-     * @param tableActive Serveix per a identificar quin es el taulell seleccionat
      */
     public static void showMenu() {
         String[] menu = {
