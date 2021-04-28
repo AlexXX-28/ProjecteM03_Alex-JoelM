@@ -103,6 +103,10 @@ Tenim opcions de testeig que ens validen que les frases que printem amb un color
 
 ## Importació i emmagatzematge de dades en fitxers TXT
 
+### Importarció
+- En importació, per importar la taula desitjada el que es fa es llegir una pasada sensera per a tot el fitxer per despres fer el llistat de taules que hi tinc en el    fitxer. Un cop determinada la quantitat de taules que tinc i fet el llistat, ara pregunto al usuari en quina taula vol importar per a que el programa es pogui posicionar en la taula seleccionada anteriorment. Un cop fet es truca a la funcio per a llegir i importar en memoria amb el parametre de la opcio seleccionada de taula per a importar-se a continuació.
+### Emmagatzematge
+
 ## Consum de l'API REST de dades COVID
 
 En l'API REST de les dades del COVID vam fer les següents consultes:
